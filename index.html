@@ -5448,7 +5448,12 @@
 
         <span class="rsvp-section-label reveal">Full Name</span>
         <div class="rsvp-field reveal">
-          <input type="text" id="rsvp-name" placeholder="E.g., Eleanor Vance" />
+          <input
+            type="text"
+            id="rsvp-name"
+            placeholder="E.g., Eleanor Vance"
+            maxlength="60"
+          />
         </div>
 
         <span class="rsvp-section-label reveal">Your Wishes &amp; Message</span>
@@ -5456,52 +5461,31 @@
           <textarea
             id="rsvp-ucapan"
             rows="3"
+            maxlength="300"
             placeholder="Share your blessings or wishes here..."
           ></textarea>
         </div>
 
         <div id="rsvp-success"></div>
-        <button class="btn-rsvp-submit reveal" onclick="submitRsvp()">
+        <div id="rsvp-error">Gagal mengirim. Silakan coba lagi.</div>
+
+        <button
+          class="btn-rsvp-submit reveal"
+          id="rsvp-submit-btn"
+          onclick="submitRsvp()"
+        >
           SUBMIT RSVP
         </button>
 
         <div class="guest-comments-section reveal">
           <div class="guest-comments-title">Guest Comments</div>
-          <div id="comments-feed">
-            <div class="comment-item">
-              <div class="comment-header">
-                <span class="comment-name">Eleanor Vance</span>
-                <span class="comment-time">Oct 12, 10:15 AM</span>
-              </div>
-              <div class="comment-text">
-                Congratulations to the happy couple! So excited to celebrate
-                Alvin &amp; Risma's magical day. Sending all my love!
-              </div>
-            </div>
-            <div class="comment-item">
-              <div class="comment-header">
-                <span class="comment-name">Liam &amp; Sarah Jenkins</span>
-                <span class="comment-time">Oct 11, 4:22 PM</span>
-              </div>
-              <div class="comment-text">
-                We are absolutely thrilled for you both! A lifetime of happiness
-                awaits. Can't wait for the festivities!
-              </div>
-            </div>
-            <div class="comment-item">
-              <div class="comment-header">
-                <span class="comment-name">Grace O'Connell</span>
-                <span class="comment-time">Oct 10, 8:41 PM</span>
-              </div>
-              <div class="comment-text">
-                A beautiful invitation. We are honoured to be part of your
-                celebration. Have a wonderful wedding day!
-              </div>
-            </div>
+          <div id="comments-loading">Memuat ucapan...</div>
+          <div id="comments-empty" style="display: none">
+            Belum ada ucapan. Jadilah yang pertama!
           </div>
+          <div id="comments-feed"></div>
         </div>
       </section>
-
       <!-- CLOSING -->
       <div class="bg-elegant">
         <section id="closing">
@@ -5556,6 +5540,7 @@
         <span>Gallery</span>
       </div>
     </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script>
       var audio = document.getElementById("audio");
@@ -5895,10 +5880,9 @@
       const SUPABASE_ANON_KEY =
         "sb_publishable_n9mzpRu8X9G5DENzOiKWng_ZYBhgKsA";
 
-      const supabase = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY,
-      );
+      const { createClient } = window.supabase;
+
+      const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
       let rsvpChoice = "hadir";
 
@@ -5966,7 +5950,7 @@
         const emptyEl = document.getElementById("comments-empty");
 
         try {
-          const { data, error } = await supabase
+          const { data, error } = await supabaseClient
             .from("rsvp")
             .select("name, attendance, message, created_at")
             .order("created_at", { ascending: false })
@@ -6014,7 +5998,7 @@
 
         try {
           // INSERT ke Supabase — hanya kirim kolom yang perlu
-          const { data, error } = await supabase
+          const { data, error } = await supabaseClient
             .from("rsvp")
             .insert([{ name, attendance: rsvpChoice, message: msg }])
             .select("name, attendance, message, created_at")
