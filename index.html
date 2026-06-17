@@ -1993,6 +1993,7 @@
         width: 100%;
         max-width: 400px;
         padding: 0 20px;
+        margin-top: 10px;
       }
 
       .guest-comments-title {
@@ -2003,6 +2004,44 @@
         text-align: center;
         text-transform: uppercase;
         margin-bottom: 20px;
+      }
+
+      .comments-container {
+        max-height: 400px;
+        overflow-y: auto;
+        padding-right: 10px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(215, 181, 109, 0.3) transparent;
+      }
+      .comments-container::-webkit-scrollbar {
+        width: 4px;
+      }
+      .comments-container::-webkit-scrollbar-thumb {
+        background: rgba(215, 181, 109, 0.3);
+        border-radius: 4px;
+      }
+
+      .btn-load-more {
+        display: none;
+        width: 100%;
+        margin-top: 15px;
+        padding: 10px;
+        background: transparent;
+        border: 1px solid rgba(215, 181, 109, 0.25);
+        color: rgba(215, 181, 109, 0.6);
+        font-family: "Lato", sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-radius: 4px;
+      }
+      .btn-load-more:active {
+        background: rgba(215, 181, 109, 0.1);
+        border-color: var(--gold);
+        color: var(--gold);
       }
 
       .comment-item {
@@ -2017,7 +2056,7 @@
       .comment-header {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
         margin-bottom: 6px;
       }
       .comment-name {
@@ -2025,6 +2064,31 @@
         font-size: 15px;
         font-style: italic;
         color: var(--gold-light);
+        display: flex;
+        align-items: center;
+      }
+      .comment-badge {
+        font-family: "Lato", sans-serif;
+        font-size: 8px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 2px 8px;
+        border-radius: 4px;
+        letter-spacing: 1px;
+        margin-left: 10px;
+        display: inline-flex;
+        align-items: center;
+        height: 16px;
+      }
+      .badge-hadir {
+        background: rgba(215, 181, 109, 0.15);
+        color: var(--gold);
+        border: 0.5px solid rgba(215, 181, 109, 0.4);
+      }
+      .badge-tidak {
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.4);
+        border: 0.5px solid rgba(255, 255, 255, 0.15);
       }
       .comment-time {
         font-family: "Lato", sans-serif;
@@ -5479,11 +5543,20 @@
 
         <div class="guest-comments-section reveal">
           <div class="guest-comments-title">Guest Comments</div>
-          <div id="comments-loading">Memuat ucapan...</div>
-          <div id="comments-empty" style="display: none">
-            Belum ada ucapan. Jadilah yang pertama!
+          <div class="comments-container">
+            <div id="comments-loading">Memuat ucapan...</div>
+            <div id="comments-empty" style="display: none">
+              Belum ada ucapan. Jadilah yang pertama!
+            </div>
+            <div id="comments-feed"></div>
           </div>
-          <div id="comments-feed"></div>
+          <button
+            id="btn-load-more"
+            class="btn-load-more"
+            onclick="loadMoreComments()"
+          >
+            LOAD MORE
+          </button>
         </div>
       </section>
       <!-- CLOSING -->
@@ -5921,7 +5994,7 @@
 
         const badgeClass =
           c.attendance === "hadir" ? "badge-hadir" : "badge-tidak";
-        const badgeText = c.attendance === "hadir" ? "Hadir" : "Tidak Hadir";
+        const badgeText = c.attendance === "hadir" ? "attend" : "cant attend";
 
         item.innerHTML = `
       <div class="comment-header">
@@ -5945,31 +6018,66 @@
       // - limit 20 komentar terbaru saja
       // - tidak ada polling / realtime subscription
       // =========================================================
-      async function loadComments() {
+      let commentsOffset = 0;
+      const COMMENTS_LIMIT = 5;
+
+      async function loadComments(reset = false) {
         const loadingEl = document.getElementById("comments-loading");
         const emptyEl = document.getElementById("comments-empty");
+        const loadMoreBtn = document.getElementById("btn-load-more");
+        const feed = document.getElementById("comments-feed");
+
+        if (reset) {
+          commentsOffset = 0;
+          feed.innerHTML = "";
+          loadMoreBtn.style.display = "none";
+        }
 
         try {
+          if (commentsOffset === 0) loadingEl.style.display = "block";
+
           const { data, error } = await supabaseClient
             .from("rsvp")
             .select("name, attendance, message, created_at")
             .order("created_at", { ascending: false })
-            .limit(20);
+            .range(commentsOffset, commentsOffset + COMMENTS_LIMIT - 1);
 
           loadingEl.style.display = "none";
 
           if (error) throw error;
 
           if (!data || data.length === 0) {
-            emptyEl.style.display = "block";
+            if (commentsOffset === 0) emptyEl.style.display = "block";
+            loadMoreBtn.style.display = "none";
             return;
           }
 
           data.forEach((c) => renderCommentItem(c, false));
+
+          commentsOffset += data.length;
+
+          // Jika data yang ditarik sama dengan limit, kemungkinan masih ada data lagi
+          if (data.length === COMMENTS_LIMIT) {
+            loadMoreBtn.style.display = "block";
+          } else {
+            loadMoreBtn.style.display = "none";
+          }
         } catch (err) {
           loadingEl.textContent = "Gagal memuat ucapan.";
           console.error(err);
         }
+      }
+
+      function loadMoreComments() {
+        const btn = document.getElementById("btn-load-more");
+        const originalText = btn.textContent;
+        btn.textContent = "LOADING...";
+        btn.disabled = true;
+
+        loadComments(false).finally(() => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+        });
       }
 
       async function submitRsvp() {
@@ -5997,7 +6105,6 @@
         btn.textContent = "MENGIRIM...";
 
         try {
-          // INSERT ke Supabase — hanya kirim kolom yang perlu
           const { data, error } = await supabaseClient
             .from("rsvp")
             .insert([{ name, attendance: rsvpChoice, message: msg }])
@@ -6009,9 +6116,9 @@
           successEl.style.display = "block";
           successEl.textContent = "Terima kasih, " + name + "! ✦";
 
-          // Langsung tampilkan komentar sendiri tanpa fetch ulang (hemat request)
           document.getElementById("comments-empty").style.display = "none";
           renderCommentItem(data, true);
+          commentsOffset++; // Update offset agar pagination tetap sinkron
 
           nameInput.value = "";
           ucapanInput.value = "";
@@ -6171,18 +6278,16 @@
 
         function spawnShooter() {
           if (shooters.length > 2) return;
-
           shooters.push({
             x: Math.random() * W,
-            y: Math.random() * H * 0.4,
-            angle: (-(Math.random() * 20 + 15) * Math.PI) / 180,
-            speed: 6 + Math.random() * 4,
+            y: -20,
+            speed: 2,
+            gravity: 0.05,
             life: 0,
-            maxLife: 60,
-            tail: 80,
+            maxLife: 120,
+            tail: 50,
           });
         }
-
         function draw(t) {
           ctx.clearRect(0, 0, W, H);
 
@@ -6196,23 +6301,35 @@
           });
 
           shooters = shooters.filter((sh) => sh.life < sh.maxLife);
-
           shooters.forEach((sh) => {
             sh.life++;
-            const dx = Math.cos(sh.angle) * sh.speed;
-            const dy = Math.sin(sh.angle) * sh.speed;
+            sh.speed += sh.gravity;
+            sh.y += sh.speed;
 
-            sh.x += dx;
-            sh.y += dy;
+            // ekor berada di atas bintang
+            const gradient = ctx.createLinearGradient(
+              sh.x,
+              sh.y - sh.tail,
+              sh.x,
+              sh.y,
+            );
+
+            gradient.addColorStop(0, "rgba(255,255,255,0)");
+            gradient.addColorStop(1, "rgba(255,255,255,0.9)");
 
             ctx.beginPath();
-            ctx.moveTo(sh.x - dx * 10, sh.y - dy * 10);
+            ctx.moveTo(sh.x, sh.y - sh.tail);
             ctx.lineTo(sh.x, sh.y);
-            ctx.strokeStyle = "rgba(255,255,255,0.8)";
+            ctx.strokeStyle = gradient;
             ctx.lineWidth = 1.5;
             ctx.stroke();
-          });
 
+            // kepala bintang
+            ctx.beginPath();
+            ctx.arc(sh.x, sh.y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255,255,255,1)";
+            ctx.fill();
+          });
           requestAnimationFrame(draw);
         }
 
