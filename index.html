@@ -1,0 +1,6248 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alvin &amp; Risma Wedding Invitation</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://s13.gifyu.com/images/bI1Ly.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --gold: #d7b56d;
+        --gold-light: #e8d5a3;
+        --navy: #030918;
+        --mid: #0f1e40;
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--navy);
+        font-family: "Lato", sans-serif;
+      }
+
+      /* COVER */
+      #cover {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        transform: translateY(100%);
+        transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      #cover.ready {
+        transform: translateY(0);
+      }
+      #cover.slide-away {
+        transform: translateY(120vh);
+        visibility: hidden; /* Tambahan */
+        transition:
+          transform 0.9s cubic-bezier(0.76, 0, 0.24, 1),
+          visibility 0s linear 0.9s;
+        pointer-events: none;
+      }
+
+      .cover-inner {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+      }
+
+      .rasi1 {
+        position: absolute;
+        top: 0;
+        left: 0%;
+        width: 34%;
+        z-index: 2;
+        animation: twinkle 3s infinite ease-in-out;
+      }
+      .rasi2 {
+        position: absolute;
+        top: 0;
+        right: -10%;
+        width: 34%;
+        z-index: 2;
+        animation: twinkle 3s infinite ease-in-out;
+      }
+
+      .cover-couple {
+        position: absolute;
+        top: 16%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        z-index: 10;
+      }
+      .cover-couple h1 {
+        font-family: "Cinzel Decorative", serif;
+        font-size: clamp(28px, 7vw, 90px);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: 4px;
+        text-shadow: 0 0 15px rgba(215, 181, 109, 0.3);
+        white-space: nowrap;
+
+        /* Efek Kilauan Shimmer Gold */
+        background: linear-gradient(
+          90deg,
+          #e8d5a3 0%,
+          #fffbf0 25%,
+          #d7b56d 50%,
+          #e8d5a3 100%
+        );
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shineGlint 6s linear infinite;
+      }
+
+      .cover-guest {
+        position: absolute;
+        top: 37%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        z-index: 10;
+        color: #fff;
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-size: 18px;
+      }
+      .cover-guest span {
+        display: block;
+        margin-top: 10px;
+        color: #fff;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 22px;
+        text-align: center;
+        text-transform: none;
+        font-weight: 600;
+        white-space: nowrap;
+        letter-spacing: 0;
+      }
+
+      .mercusuar-wrap {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 58%;
+        z-index: 7;
+        pointer-events: none;
+      }
+      .mercusuar {
+        position: relative;
+        width: 100%;
+        display: block;
+      }
+      .lighthouse-beam-wrap {
+        position: absolute;
+        bottom: 88%; /* Letak lampu relatif terhadap tinggi mercusuar */
+        left: 50%; /* Letak lampu relatif terhadap lebar mercusuar */
+        width: 100%;
+        transform: translateX(-50%);
+        z-index: 2;
+        pointer-events: none;
+      }
+      .kapal {
+        position: absolute;
+        animation: boatFloat 4s ease-in-out infinite;
+        width: 10%;
+        right: 10%;
+        bottom: 23.5%;
+        z-index: 3;
+      }
+      .ombak {
+        position: absolute;
+        bottom: -16%;
+        width: 110%;
+        left: 0%;
+        z-index: 3;
+        animation: seaMove 12s linear infinite;
+      }
+      .ombakwrap {
+        position: absolute;
+        bottom: -4%;
+        left: 0;
+        width: 100%;
+        height: auto;
+      }
+      .open-btn {
+        position: absolute;
+        bottom: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20;
+        padding: 14px 35px;
+        border-radius: 40px;
+        border: 1px solid var(--gold);
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        color: var(--gold);
+        cursor: pointer;
+        letter-spacing: 2px;
+        font-family: "Lato", sans-serif;
+        font-size: 13px;
+        transition: 0.4s;
+        white-space: nowrap;
+      }
+      .open-btn:hover,
+      .open-btn:active {
+        background: var(--gold);
+        color: #07182f;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      @keyframes ornamentFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(3deg);
+        }
+      }
+      @keyframes boatFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+      @keyframes seaMove {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* @keyframes seaScroll {
+  from {
+    background-position: 0 bottom;
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+  to {
+    background-position: -1000px bottom;
+    -webkit-mask-position: -1000px 0;
+    mask-position: -1000px 0;
+  }
+} */
+
+      /* MAIN */
+      #main {
+        position: fixed;
+        inset: 0;
+        background: var(--navy);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s 0.3s;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+      #main.on {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .section {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: 60px 24px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .sec-label {
+        font-family: "Lato", sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: rgba(215, 181, 109, 0.55);
+        text-align: center;
+        margin-bottom: 8px;
+      }
+      .sec-title {
+        font-family: "Cinzel", serif;
+        font-size: clamp(18px, 5vw, 24px);
+        font-weight: 400;
+        color: var(--gold-light);
+        letter-spacing: 3px;
+        text-align: center;
+        margin-bottom: 6px;
+      }
+      .sec-sub {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 14px;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.35);
+        text-align: center;
+        letter-spacing: 2px;
+        margin-bottom: 36px;
+      }
+
+      /* HERO */
+      .date {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        animation: ornamentFloat 6s ease-in-out infinite;
+      }
+      .ornamen {
+        width: 50%;
+        height: auto;
+        display: block;
+      }
+      .hero-date {
+        position: absolute;
+        top: 51%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--gold);
+        text-align: center;
+        font-size: 14px;
+        font-family: "Cormorant Garamond", serif;
+        white-space: nowrap;
+        z-index: 2;
+      }
+
+      .corner-ornament {
+        position: absolute;
+        width: 0px;
+        height: 0px; /* Diubah dari 32px ke 0px untuk start animasi */
+        pointer-events: none;
+        transition:
+          width 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+          height 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: 0.3s;
+      }
+      .corner-ornament.visible {
+        width: 32px;
+        height: 32px;
+      } /* Ditambahkan */
+      .corner-ornament.tl {
+        top: 18px;
+        left: 18px;
+        border-left: 1.5px solid rgba(215, 181, 109, 0.45);
+        border-top: 1.5px solid rgba(215, 181, 109, 0.45);
+      }
+      .corner-ornament.tr {
+        top: 18px;
+        right: 18px;
+        border-right: 1.5px solid rgba(215, 181, 109, 0.45);
+        border-top: 1.5px solid rgba(215, 181, 109, 0.45);
+      }
+      .corner-ornament.bl {
+        bottom: 100px;
+        left: 18px;
+        border-left: 1.5px solid rgba(215, 181, 109, 0.45);
+        border-bottom: 1.5px solid rgba(215, 181, 109, 0.45);
+      }
+      .corner-ornament.br {
+        bottom: 100px;
+        right: 18px;
+        border-right: 1.5px solid rgba(215, 181, 109, 0.45);
+        border-bottom: 1.5px solid rgba(215, 181, 109, 0.45);
+      }
+
+      .hex-wrap {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 37px;
+      }
+      .hex-border-ring {
+        position: absolute;
+        width: 234px;
+        height: 234px;
+        top: -7px;
+        left: -7px;
+        clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+        background: linear-gradient(
+          135deg,
+          #d7b56d 0%,
+          rgba(215, 181, 109, 0.15) 50%,
+          #d7b56d 100%
+        );
+      }
+      .hex-inner {
+        width: 220px;
+        height: 220px;
+        clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+        overflow: hidden;
+        background: linear-gradient(
+          160deg,
+          #1a3060 0%,
+          #0a1535 50%,
+          #1a1060 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(215, 181, 109, 0.35);
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 11px;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .hex-inner img {
+        width: 100%;
+        object-fit: cover;
+      }
+      .hex-top-ornament,
+      .hex-bot-ornament {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--gold);
+        font-size: 10px;
+        opacity: 0.7;
+      }
+      .hex-top-ornament {
+        top: -16px;
+      }
+      .hex-bot-ornament {
+        bottom: -16px;
+      }
+
+      /* ── KODE SEBELUMNYA YANG SUDAH DIPERBAIKI ── */
+      .hero-names {
+        font-family: "Cinzel", serif;
+        font-size: clamp(22px, 6.5vw, 34px);
+        font-weight: 400;
+        color: var(--gold-light);
+        letter-spacing: 12px;
+        text-align: center;
+        margin-bottom: 4px;
+        position: relative;
+        display: inline-block;
+
+        /* Efek Kilauan Shimmer */
+        background: linear-gradient(
+          90deg,
+          #e8d5a3 0%,
+          #fffbf0 25%,
+          #d7b56d 50%,
+          #e8d5a3 100%
+        );
+        background-size: 200% auto;
+
+        /* ── Penambahan Properti Standar & Webkit untuk Kompatibilitas ── */
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        animation: shineGlint 6s linear infinite;
+        text-shadow: 0 0 30px rgba(215, 181, 109, 0.2);
+        transition:
+          letter-spacing 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 1.5s ease;
+      }
+
+      .reveal.visible .hero-names {
+        letter-spacing: 4px;
+      }
+
+      /* Animasi Ampersand (&) */
+      .hero-names .amp {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        display: inline-block;
+        background: linear-gradient(135deg, #d7b56d, #fff);
+
+        /* ── Penambahan Properti Standar & Webkit untuk Kompatibilitas ── */
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        font-size: 1.15em;
+        transform: scale(0.5) rotateY(90deg);
+        opacity: 0;
+        transition:
+          transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s,
+          opacity 1.5s ease 0.5s;
+      }
+      .hero-tagline {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 13px;
+        font-style: italic;
+        color: rgba(200, 190, 230, 0.5);
+        letter-spacing: 3px;
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .date-ornament-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 10px;
+        gap: 4px;
+        color: rgba(215, 181, 109, 0.55);
+      }
+      .date-col {
+        padding: 10px 18px;
+        text-align: center;
+      }
+      .date-col .dlabel {
+        font-size: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(215, 181, 109, 0.55);
+        display: block;
+        margin-bottom: 2px;
+      }
+      .date-col .dval {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(20px, 6vw, 30px);
+        color: #fff;
+        font-weight: 300;
+        line-height: 1;
+      }
+      .date-col .dsub {
+        font-size: 9px;
+        letter-spacing: 2px;
+        color: var(--gold);
+        text-transform: uppercase;
+        display: block;
+        margin-top: 2px;
+      }
+      .date-vsep {
+        width: 1px;
+        background: rgba(215, 181, 109, 0.2);
+        align-self: stretch;
+      }
+
+      .scroll-hint {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        animation: bounceHint 2s ease-in-out infinite;
+        margin-top: 8px;
+      }
+      .scroll-hint span {
+        font-size: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(215, 181, 109, 0.4);
+      }
+      @keyframes bounceHint {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(6px);
+        }
+      }
+
+      /* COUPLE */
+      #couple {
+        position: relative;
+        /* overflow: hidden;
+        background: url("https://s13.gifyu.com/images/bIouF.png") no-repeat
+          center top fixed;
+        background-size: cover; */
+        padding-bottom: 100px;
+        background: transparent;
+      }
+
+      .couple-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 36px;
+      }
+
+      .sm-hex-wrap {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sm-hex-border {
+        position: absolute;
+        width: 304px;
+        height: 304px;
+        top: -2px;
+        left: -2px;
+        clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+        background: linear-gradient(
+          135deg,
+          #d7b56d,
+          rgba(215, 181, 109, 0.15),
+          #d7b56d
+        );
+      }
+      .sm-hex-inner {
+        width: 300px;
+        height: 300px;
+        clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+        background: linear-gradient(135deg, #1a3060, #0a1535);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(215, 181, 109, 0.3);
+        overflow: hidden;
+      }
+      .sm-hex-inner img {
+        width: 100%;
+        /* height: 100%; */
+        object-fit: cover;
+      }
+
+      .couple-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(22px, 6vw, 30px);
+        font-style: italic;
+        color: #fff;
+        text-align: center;
+      }
+      .couple-fullname {
+        font-family: "Cinzel", serif;
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: var(--gold);
+        text-align: center;
+        margin-top: 2px;
+      }
+      .couple-parents-wrap {
+        margin-top: 8px;
+        text-align: center;
+      }
+      .parents-label {
+        font-size: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(215, 181, 109, 0.5);
+        margin-bottom: 8px;
+      }
+      .parent-entry {
+        margin-bottom: 6px;
+      }
+      .parent-title-tag {
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(215, 181, 109, 0.55);
+      }
+      .parent-name-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.75);
+        display: block;
+        line-height: 1.3;
+      }
+
+      .amp-sep {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 4px 0 28px;
+      }
+      .amp-sep .aline {
+        flex: 1;
+        height: 1px;
+        background: rgba(215, 181, 109, 0.2);
+      }
+      .amp-sep .atext {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 28px;
+        color: var(--gold);
+        line-height: 1;
+      }
+
+      /* COUPLE CANVAS */
+
+      #couple-canvas {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+      /* .couple-aurora {
+        position: absolute;
+        left: -10%;
+        width: 120%;
+        pointer-events: none;
+        z-index: 1;
+        border-radius: 50%;
+        filter: blur(30px);
+        animation: coupleAuroraDrift 12s ease-in-out infinite alternate;
+      }
+      .couple-aurora-1 {
+        top: 5%;
+        height: 160px;
+        background: radial-gradient(
+          ellipse,
+          rgba(80, 40, 160, 0.3) 0%,
+          transparent 70%
+        );
+        animation-delay: 0s;
+      }
+      .couple-aurora-2 {
+        top: 15%;
+        height: 160px;
+        background: radial-gradient(
+          ellipse,
+          rgba(20, 100, 160, 0.22) 0%,
+          transparent 70%
+        );
+        animation-delay: 3s;
+      }
+      .couple-aurora-3 {
+        top: 0%;
+        height: 140px;
+        background: radial-gradient(
+          ellipse,
+          rgba(215, 181, 109, 0.1) 0%,
+          transparent 65%
+        );
+        animation-delay: 6s;
+      } */
+      /* @keyframes coupleAuroraDrift {
+        0% {
+          transform: translateX(-5%) scaleX(0.95);
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateX(5%) scaleX(1.05);
+          opacity: 1;
+        }
+      } */
+      /* .couple-moon {
+        position: absolute;
+        top: 18px;
+        right: 28px;
+        width: 50px;
+        height: 50px;
+        z-index: 2;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 38% 38%,
+          #fffbe8,
+          #f0d890 40%,
+          #c8a94a 80%
+        );
+        box-shadow:
+          0 0 18px 6px rgba(215, 181, 109, 0.28),
+          0 0 40px 12px rgba(215, 181, 109, 0.12);
+        animation: coupleMoonGlow 6s ease-in-out infinite alternate;
+      }
+      .couple-moon-crater {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(160, 120, 40, 0.22);
+      } */
+      /* @keyframes coupleMoonGlow {
+        0% {
+          box-shadow:
+            0 0 18px 6px rgba(215, 181, 109, 0.28),
+            0 0 40px 12px rgba(215, 181, 109, 0.1);
+        }
+        100% {
+          box-shadow:
+            0 0 28px 10px rgba(215, 181, 109, 0.4),
+            0 0 60px 20px rgba(215, 181, 109, 0.18);
+        }
+      } */
+      /* .couple-cloud {
+        position: absolute;
+        pointer-events: none;
+        z-index: 2;
+        opacity: 0;
+        animation: coupleCloudFloat linear infinite;
+      } */
+      @keyframes coupleCloudFloat {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-110vw);
+        }
+      }
+      .sm-hex-border {
+        animation: hexPulse 3s ease-in-out infinite alternate;
+      }
+      @keyframes hexPulse {
+        0% {
+          opacity: 0.7;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .hex-shimmer {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          transparent 40%,
+          rgba(215, 181, 109, 0.15) 50%,
+          transparent 60%
+        );
+        animation: coupleShimmer 4s ease-in-out infinite;
+        clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+      }
+      @keyframes coupleShimmer {
+        0%,
+        100% {
+          transform: translateX(-100%);
+        }
+        50% {
+          transform: translateX(200%);
+        }
+      }
+      .amp-sep .atext {
+        animation: ampPulse 2.5s ease-in-out infinite;
+      }
+      @keyframes ampPulse {
+        0%,
+        100% {
+          text-shadow: 0 0 8px rgba(215, 181, 109, 0.3);
+        }
+        50% {
+          text-shadow:
+            0 0 20px rgba(215, 181, 109, 0.7),
+            0 0 40px rgba(215, 181, 109, 0.3);
+        }
+      }
+      .couple-orbit-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(215, 181, 109, 0.1);
+        pointer-events: none;
+        z-index: 1;
+        animation: coupleOrbitSpin linear infinite;
+      }
+      .couple-orbit-dot {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: var(--gold);
+        border-radius: 50%;
+        box-shadow: 0 0 6px rgba(215, 181, 109, 0.6);
+        top: -1.5px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      @keyframes coupleOrbitSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .couple-fp {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 2;
+        background: rgba(215, 181, 109, 0.6);
+        animation: coupleFpFloat ease-in-out infinite alternate;
+      }
+      @keyframes coupleFpFloat {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 0.4;
+        }
+        100% {
+          transform: translateY(-12px) scale(1.3);
+          opacity: 0.9;
+        }
+      }
+
+      /* STORY */
+      #story {
+        padding: 0;
+        position: relative;
+      }
+
+      .story-header {
+        padding: 60px 28px 32px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      .story-chapter-counter {
+        font-family: "Lato", sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: rgba(215, 181, 109, 0.5);
+        margin-bottom: 10px;
+        transition: opacity 0.4s;
+      }
+
+      .story-track-outer {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        touch-action: pan-y;
+      }
+      .story-track {
+        display: flex;
+        transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+      }
+
+      .story-slide {
+        min-width: 100%;
+        position: relative;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .story-slide-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: transparent;
+      }
+
+      .story-slide-bg img {
+        display: none;
+      }
+
+      .story-slide-bg::after {
+        display: none;
+      }
+
+      .story-slide-content {
+        position: relative;
+        z-index: 2;
+        padding: 48px 28px 48px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      /* .frame-tl {
+        position: absolute;
+        top: 22px;
+        left: 22px;
+        width: 54px;
+        height: 54px;
+        z-index: 3;
+        pointer-events: none;
+      }
+      .frame-tl::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-left: 1.5px solid var(--gold);
+        border-top: 1.5px solid var(--gold);
+        opacity: 0.6;
+      }
+
+      .frame-tl-star {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        width: 8px;
+        height: 8px;
+        z-index: 4;
+        pointer-events: none;
+      }
+      .frame-tl-star::before,
+      .frame-tl-star::after {
+        content: "";
+        position: absolute;
+        background: var(--gold);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      } */
+      /* .frame-tl-star::before {
+        width: 1px;
+        height: 10px;
+      }
+      .frame-tl-star::after {
+        width: 10px;
+        height: 1px;
+      } */
+
+      .story-photo-wrap {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto 28px;
+        aspect-ratio: 4/3;
+      }
+      .story-photo-inner {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #1a3060, #0a1535);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        color: rgba(215, 181, 109, 0.3);
+      }
+      .story-photo-inner img {
+        width: 100%;
+        /* height: 100%; */
+        object-fit: cover;
+      }
+
+      .photo-corner-tl {
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        width: 36px;
+        height: 36px;
+        pointer-events: none;
+        border-left: 1.5px solid var(--gold);
+        border-top: 1.5px solid var(--gold);
+      }
+      .photo-corner-tl::before {
+        content: "✦";
+        position: absolute;
+        top: -8px;
+        left: -5px;
+        font-size: 9px;
+        color: var(--gold);
+        opacity: 0.8;
+      }
+
+      .photo-corner-br {
+        position: absolute;
+        bottom: -8px;
+        right: -8px;
+        width: 36px;
+        height: 36px;
+        pointer-events: none;
+        border-right: 1.5px solid var(--gold);
+        border-bottom: 1.5px solid var(--gold);
+      }
+      .photo-corner-br::after {
+        content: "✦";
+        position: absolute;
+        bottom: -8px;
+        right: -5px;
+        font-size: 9px;
+        color: var(--gold);
+        opacity: 0.8;
+      }
+
+      .story-ch-label {
+        font-family: "Lato", sans-serif;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: rgba(215, 181, 109, 0.55);
+        margin-bottom: 6px;
+      }
+      .story-ch-title {
+        font-family: "Cinzel", serif;
+        font-size: clamp(16px, 4.5vw, 22px);
+        font-weight: 800;
+        color: var(--gold);
+        line-height: 1.35;
+        margin-bottom: 20px;
+        text-shadow: 0 0 20px rgba(215, 181, 109, 0.25);
+      }
+
+      .story-divider {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .story-divider-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          rgba(215, 181, 109, 0.5),
+          transparent
+        );
+      }
+      .story-divider-star {
+        color: var(--gold);
+        font-size: 8px;
+        opacity: 0.7;
+      }
+
+      .story-body {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(14px, 3.8vw, 16px);
+        font-weight: 400;
+        line-height: 1.85;
+        color: rgba(255, 255, 255, 0.75);
+        flex: 1;
+      }
+      .story-body p + p {
+        margin-top: 16px;
+      }
+
+      /* .frame-br {
+        position: absolute;
+        bottom: 70px;
+        right: 22px;
+        width: 54px;
+        height: 54px;
+        z-index: 3;
+        pointer-events: none;
+      }
+      .frame-br::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border-right: 1.5px solid var(--gold);
+        border-bottom: 1.5px solid var(--gold);
+        opacity: 0.6;
+      }
+      .frame-br-star {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 8px;
+        height: 8px;
+        z-index: 4;
+        pointer-events: none;
+      }
+      .frame-br-star::before,
+      .frame-br-star::after {
+        content: "";
+        position: absolute;
+        background: var(--gold);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .frame-br-star::before {
+        width: 1px;
+        height: 10px;
+      }
+      .frame-br-star::after {
+        width: 10px;
+        height: 1px;
+      } */
+
+      /* SLIDER NAV */
+      .story-nav {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 20px 0 32px;
+        background: transparent;
+      }
+      .story-dots {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .story-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(215, 181, 109, 0.25);
+        border: 1px solid rgba(215, 181, 109, 0.45);
+        cursor: pointer;
+        transition: all 0.35s;
+      }
+      .story-dot.active {
+        width: 22px;
+        border-radius: 3px;
+        background: var(--gold);
+        border-color: var(--gold);
+      }
+      .story-arrow {
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(215, 181, 109, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(215, 181, 109, 0.6);
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s;
+        user-select: none;
+        background: rgba(215, 181, 109, 0.04);
+      }
+      .story-arrow:active,
+      .story-arrow:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        background: rgba(215, 181, 109, 0.1);
+      }
+      .story-arrow[disabled] {
+        opacity: 0.25;
+        pointer-events: none;
+      }
+
+      /* BOTTOM NAV */
+      #bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 500;
+        background: rgba(3, 9, 24, 0.93);
+        backdrop-filter: blur(14px);
+        border-top: 1px solid rgba(215, 181, 109, 0.12);
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s 0.8s;
+      }
+      #bottom-nav.on {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .nav-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0 max(10px, env(safe-area-inset-bottom));
+        gap: 4px;
+        cursor: pointer;
+        color: rgba(215, 181, 109, 0.35);
+        font-family: "Lato", sans-serif;
+        font-size: 8px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: color 0.3s;
+      }
+      .nav-item.active,
+      .nav-item:active {
+        color: var(--gold);
+      }
+      .nav-item svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .text-corner-br {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        pointer-events: none;
+        z-index: 3;
+      }
+
+      /* .text-corner-tl {
+        top: 23%;
+        left: 22px;
+        border-left: 1.5px solid var(--gold);
+        border-top: 1.5px solid var(--gold);
+        opacity: 0.6;
+      } */
+
+      /* .text-corner-tl::before {
+        content: "✦";
+        position: absolute;
+        top: -15px;
+        left: -10px;
+        font-size: 20px;
+        color: var(--gold);
+        opacity: 0.8;
+      } */
+
+      .text-corner-br {
+        bottom: 5%;
+        right: 22px;
+        border-right: 1.5px solid var(--gold);
+        border-bottom: 1.5px solid var(--gold);
+        opacity: 0.6;
+      }
+
+      .text-corner-br::after {
+        content: "✦";
+        position: absolute;
+        bottom: -12px;
+        right: -8px;
+        font-size: 20px;
+        color: var(--gold);
+        opacity: 0.8;
+      }
+
+      .text-corner-tl,
+      .text-corner-br {
+        transition: opacity 0.4s ease;
+      }
+
+      .text-corner-br {
+        opacity: 1;
+      }
+      /* COUNTDOWN */
+      #countdown {
+        position: relative;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 24px 100px;
+        position: relative;
+      }
+      .tick-pop {
+        transform: scale(1.18);
+        filter: brightness(1.3);
+      }
+
+      /* .cd-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .cd-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.22;
+        mix-blend-mode: luminosity;
+      } */
+      /* 
+      .cd-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.8) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.5) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.35) 1px,
+            transparent 1px
+          );
+        background-size:
+          100px 100px,
+          60px 60px,
+          160px 160px;
+        background-position:
+          10px 20px,
+          40px 55px,
+          75px 10px;
+        opacity: 0.5;
+      } */
+
+      /* Header*/
+      /* .cd-header {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        margin-bottom: 44px;
+      }
+      .cd-eyebrow {
+        font-family: "Cinzel Decorative", serif;
+        font-size: clamp(18px, 5vw, 26px);
+        font-weight: 400;
+        color: var(--gold);
+        letter-spacing: 3px;
+        line-height: 1.3;
+        text-shadow:
+          0 0 30px rgba(215, 181, 109, 0.45),
+          0 0 60px rgba(215, 181, 109, 0.2);
+        margin-bottom: 8px;
+      }
+      .cd-subtitle {
+        font-family: "Cinzel", serif;
+        font-size: clamp(13px, 3.5vw, 16px);
+        font-weight: 400;
+        letter-spacing: 4px;
+        color: rgba(232, 213, 163, 0.75);
+      }
+
+      .cd-grid {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: auto auto;
+        gap: 0 0;
+        align-items: center;
+        margin-bottom: 52px;
+        width: 100%;
+        max-width: 340px;
+      }
+
+      .cd-center-line {
+        grid-column: 2;
+        grid-row: 1 / 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 18px;
+      } */
+      .cd-center-line img {
+        width: 32px;
+        height: auto;
+        opacity: 0.75;
+        max-height: 220px;
+        object-fit: contain;
+      }
+
+      /* .cd-cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+      }
+      .cd-cell.right {
+        align-items: center;
+      }
+
+      .cd-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(64px, 17vw, 96px);
+        font-weight: 300;
+        line-height: 1;
+        color: #fff;
+        text-shadow:
+          0 0 30px rgba(215, 181, 109, 0.55),
+          0 0 70px rgba(215, 181, 109, 0.25);
+        letter-spacing: -1px;
+      }
+
+      .cd-lbl {
+        font-family: "Lato", sans-serif;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(215, 181, 109, 0.6);
+        margin-top: 2px;
+      }
+
+      .cd-footer {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+      .cd-footer-label {
+        font-family: "Cinzel Decorative", serif;
+        font-size: 11px;
+        letter-spacing: 4px;
+        color: var(--gold);
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+      .cd-footer-date {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(16px, 4.5vw, 20px);
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+        letter-spacing: 1px;
+      }
+
+      .cd-row-sep {
+        grid-column: 1 / 4;
+        height: 1px;
+        background: transparent;
+        margin: 4px 0;
+      } */
+
+      @keyframes glowPulse {
+        0% {
+          text-shadow:
+            0 0 10px rgba(215, 181, 109, 0.3),
+            0 0 20px rgba(215, 181, 109, 0.2),
+            0 0 30px rgba(215, 181, 109, 0.15);
+        }
+        50% {
+          text-shadow:
+            0 0 25px rgba(215, 181, 109, 0.7),
+            0 0 50px rgba(215, 181, 109, 0.4),
+            0 0 80px rgba(215, 181, 109, 0.25);
+        }
+        100% {
+          text-shadow:
+            0 0 10px rgba(215, 181, 109, 0.3),
+            0 0 20px rgba(215, 181, 109, 0.2),
+            0 0 30px rgba(215, 181, 109, 0.15);
+        }
+      }
+
+      @keyframes goldShift {
+        0% {
+          color: #d7b56d;
+        }
+        50% {
+          color: #f1d999;
+        }
+        100% {
+          color: #d7b56d;
+        }
+      }
+
+      @keyframes tickPop {
+        0% {
+          transform: scale(1);
+        }
+        40% {
+          transform: scale(1.18);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      #countdown span[id^="cd-"] {
+        animation:
+          glowPulse 3s ease-in-out infinite,
+          goldShift 6s ease-in-out infinite;
+        will-change: transform, text-shadow;
+        transition: transform 0.25s ease;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* WEDDING GIFT */
+      #gift {
+        background: linear-gradient(
+          180deg,
+          var(--navy) 0%,
+          #0a1535 60%,
+          var(--navy) 100%
+        );
+      }
+
+      .gift-hero-icon {
+        width: 72px;
+        height: 72px;
+        border: 1.5px solid rgba(201, 169, 110, 0.35);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        background: rgba(201, 169, 110, 0.05);
+        font-size: 28px;
+        position: relative;
+      }
+      .gift-hero-icon::before {
+        content: "";
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        border: 1px solid rgba(201, 169, 110, 0.15);
+      }
+
+      .gift-intro {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 15px;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.45);
+        text-align: center;
+        line-height: 1.9;
+        max-width: 300px;
+        margin: 0 auto 36px;
+        letter-spacing: 0.5px;
+      }
+
+      .bank-card {
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 30, 64, 0.9) 0%,
+          rgba(10, 20, 48, 0.95) 100%
+        );
+        border: 1px solid rgba(201, 169, 110, 0.22);
+        border-radius: 18px;
+        padding: 24px 22px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .bank-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1.5px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+      .bank-card::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: radial-gradient(rgba(201, 169, 110, 0.06), transparent);
+        right: -60px;
+        bottom: -60px;
+        pointer-events: none;
+      }
+
+      .bank-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .bank-logo-box {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(0, 148, 68, 0.15);
+        border: 1px solid rgba(0, 148, 68, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .bank-logo-text {
+        font-family: "Lato", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        color: #00a651;
+        letter-spacing: 1px;
+      }
+
+      .bank-name-col .bank-label {
+        font-size: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(201, 169, 110, 0.5);
+        display: block;
+      }
+      .bank-name-col .bank-name-val {
+        font-family: "Cinzel", serif;
+        font-size: 13px;
+        color: var(--gold-light);
+        letter-spacing: 2px;
+      }
+
+      .bank-account-holder {
+        margin-bottom: 16px;
+      }
+
+      .bank-field-label {
+        font-size: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(201, 169, 110, 0.45);
+        display: block;
+        margin-bottom: 3px;
+      }
+      .bank-field-value {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 17px;
+        color: rgba(255, 255, 255, 0.85);
+        letter-spacing: 1px;
+      }
+
+      .bank-number-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(201, 169, 110, 0.15);
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin-top: 4px;
+      }
+      .bank-number-display {
+        font-family: "Lato", sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 3px;
+      }
+
+      .btn-copy {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid rgba(201, 169, 110, 0.4);
+        border-radius: 8px;
+        padding: 7px 14px;
+        font-family: "Lato", sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--gold);
+        background: rgba(201, 169, 110, 0.06);
+        cursor: pointer;
+        transition: all 0.25s;
+        flex-shrink: 0;
+      }
+      .btn-copy:active,
+      .btn-copy:hover {
+        background: rgba(201, 169, 110, 0.14);
+        border-color: rgba(201, 169, 110, 0.7);
+      }
+      .btn-copy.copied {
+        border-color: rgba(100, 200, 130, 0.6);
+        color: #6ec893;
+        background: rgba(100, 200, 130, 0.07);
+      }
+
+      .gift-note {
+        max-width: 340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(201, 169, 110, 0.1);
+        border-radius: 10px;
+        padding: 14px 16px;
+      }
+      .gift-note-icon {
+        font-size: 14px;
+        opacity: 0.6;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .gift-note p {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.38);
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      /* RSVP */
+      #rsvp {
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 50% 50%,
+            #0d2060 0%,
+            transparent 65%
+          ),
+          var(--navy);
+        padding: 60px 0 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .rsvp-page-title {
+        font-family: "Cinzel", serif;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 5px;
+        color: var(--gold-light);
+        text-align: center;
+        margin-bottom: 4px;
+      }
+
+      .rsvp-page-sub {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 13px;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.4);
+        text-align: center;
+        letter-spacing: 2px;
+        margin-bottom: 24px;
+      }
+
+      .rsvp-toggle-row {
+        display: flex;
+        gap: 0;
+        width: 100%;
+        max-width: 400px;
+        padding: 0 20px;
+        margin-bottom: 28px;
+      }
+
+      .rsvp-toggle-btn {
+        flex: 1;
+        padding: 12px 10px;
+        font-family: "Lato", sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 1px solid rgba(201, 169, 110, 0.35);
+        background: transparent;
+        color: rgba(255, 255, 255, 0.45);
+        outline: none;
+      }
+      .rsvp-toggle-btn:first-child {
+        border-radius: 4px 0 0 4px;
+        border-right: none;
+      }
+      .rsvp-toggle-btn:last-child {
+        border-radius: 0 4px 4px 0;
+      }
+      .rsvp-toggle-btn.active {
+        background: linear-gradient(135deg, #c9a96e 0%, #a07840 100%);
+        border-color: var(--gold);
+        color: #0a0a0a;
+      }
+
+      .rsvp-section-label {
+        font-family: "Cinzel", serif;
+        font-size: 9px;
+        letter-spacing: 3px;
+        color: var(--gold);
+        text-transform: uppercase;
+        width: 100%;
+        max-width: 400px;
+        padding: 0 20px;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .rsvp-field {
+        width: 100%;
+        max-width: 400px;
+        padding: 0 20px;
+        margin-bottom: 20px;
+      }
+      .rsvp-field input,
+      .rsvp-field textarea {
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(201, 169, 110, 0.25);
+        padding: 10px 0;
+        font-family: "Lato", sans-serif;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        outline: none;
+        transition: border-color 0.3s;
+        resize: none;
+      }
+      .rsvp-field input::placeholder,
+      .rsvp-field textarea::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+        font-style: italic;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 13px;
+      }
+      .rsvp-field input:focus,
+      .rsvp-field textarea:focus {
+        border-bottom-color: rgba(201, 169, 110, 0.65);
+      }
+
+      .btn-rsvp-submit {
+        width: calc(100% - 40px);
+        max-width: 360px;
+        padding: 15px;
+        background: linear-gradient(
+          135deg,
+          rgba(201, 169, 110, 0.15),
+          rgba(201, 169, 110, 0.05)
+        );
+        border: 1px solid rgba(201, 169, 110, 0.4);
+        border-radius: 3px;
+        font-family: "Lato", sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-bottom: 36px;
+      }
+      .btn-rsvp-submit:active,
+      .btn-rsvp-submit:hover {
+        background: rgba(201, 169, 110, 0.18);
+        box-shadow: 0 0 20px rgba(201, 169, 110, 0.2);
+      }
+      .btn-directions {
+        display: block;
+        width: 100%;
+        padding: 16px;
+        background: transparent;
+        border: 1px solid rgba(215, 181, 109, 0.45);
+        border-radius: 40px;
+        color: var(--gold);
+        font-family: "Lato", sans-serif;
+        font-size: 12px;
+        letter-spacing: 3px;
+        text-align: center;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+      .btn-directions:active,
+      .btn-directions:hover {
+        background: rgba(201, 169, 110, 0.18);
+        box-shadow: 0 0 20px rgba(201, 169, 110, 0.2);
+      }
+      #rsvp-success {
+        display: none;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 14px;
+        font-style: italic;
+        color: rgba(201, 169, 110, 0.85);
+        text-align: center;
+        margin-bottom: 16px;
+      }
+
+      .guest-comments-section {
+        width: 100%;
+        max-width: 400px;
+        padding: 0 20px;
+      }
+
+      .guest-comments-title {
+        font-family: "Cinzel", serif;
+        font-size: 11px;
+        letter-spacing: 4px;
+        color: var(--gold);
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .comment-item {
+        border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+        padding-bottom: 18px;
+        margin-bottom: 18px;
+      }
+      .comment-item:last-child {
+        border-bottom: none;
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 6px;
+      }
+      .comment-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 15px;
+        font-style: italic;
+        color: var(--gold-light);
+      }
+      .comment-time {
+        font-family: "Lato", sans-serif;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.3);
+        letter-spacing: 0.5px;
+      }
+      .comment-text {
+        font-family: "Lato", sans-serif;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.65;
+        font-weight: 300;
+      }
+
+      /* CLOSING */
+      #closing {
+        padding: 100px 24px;
+        text-align: center;
+
+        min-height: 85vh;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .closing-names {
+        font-family: "Cinzel", serif;
+        font-size: clamp(20px, 6vw, 30px);
+        font-weight: 400;
+        color: var(--gold);
+        letter-spacing: 4px;
+        text-shadow: 0 0 30px rgba(201, 169, 110, 0.35);
+        margin-bottom: 10px;
+        text-shadow: 0 0 15px rgba(215, 181, 109, 0.3);
+        white-space: nowrap;
+
+        /* Efek Kilauan Shimmer Gold */
+        background: linear-gradient(
+          90deg,
+          #e8d5a3 0%,
+          #fffbf0 25%,
+          #d7b56d 50%,
+          #e8d5a3 100%
+        );
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shineGlint 6s linear infinite;
+      }
+
+      .closing-quote {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 14px;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.85);
+        letter-spacing: 1.5px;
+        line-height: 1.9;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+
+      .closing-source {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--gold);
+        display: block;
+        margin-top: 16px;
+      }
+      .bg-elegant {
+        position: relative;
+        overflow: hidden;
+        padding: 60px 0;
+        background: var(--navy);
+      }
+
+      .bg-elegant::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background-image: url("https://s13.gifyu.com/images/bIoqN.jpg");
+        background-position: center 40%;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        transform: scale(1.15);
+        /* filter: blur(0.5px); */
+
+        z-index: 0;
+      }
+
+      .bg-elegant::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background: rgba(3, 9, 24, 0.6);
+
+        z-index: 1;
+      }
+
+      .bg-elegant > * {
+        position: relative;
+        z-index: 2;
+      }
+      .gs {
+        color: var(--gold);
+        text-shadow: 0 0 15px rgba(215, 181, 109, 0.3);
+        white-space: nowrap;
+
+        /* Efek Kilauan Shimmer Gold */
+        background: linear-gradient(
+          90deg,
+          #e8d5a3 0%,
+          #fffbf0 25%,
+          #d7b56d 50%,
+          #e8d5a3 100%
+        );
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shineGlint 6s linear infinite;
+      }
+      #musicBtn {
+        position: fixed;
+        bottom: 80px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(3, 9, 24, 0.88);
+        border: 1.5px solid var(--gold);
+        color: var(--gold);
+        font-size: 18px;
+        cursor: pointer;
+        z-index: 600;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        transition:
+          transform 0.3s,
+          background 0.3s;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
+      }
+      #musicBtn.visible {
+        display: flex;
+      }
+      #musicBtn:active {
+        transform: scale(0.92);
+      }
+      #musicBtn.pulse {
+        animation: musicPulse 2s infinite;
+      }
+
+      @keyframes musicPulse {
+        0%,
+        100% {
+          box-shadow:
+            0 4px 20px rgba(0, 0, 0, 0.5),
+            0 0 0 0 rgba(215, 181, 109, 0.4);
+        }
+        50% {
+          box-shadow:
+            0 4px 20px rgba(0, 0, 0, 0.5),
+            0 0 0 10px rgba(215, 181, 109, 0);
+        }
+      }
+
+      #toast {
+        position: fixed;
+        bottom: 134px;
+        right: 14px;
+        background: rgba(3, 9, 24, 0.9);
+        border: 1px solid rgba(215, 181, 109, 0.35);
+        color: var(--gold);
+        font-family: "Lato", sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        padding: 8px 14px;
+        border-radius: 50px;
+        z-index: 700;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: all 0.3s;
+        pointer-events: none;
+        backdrop-filter: blur(10px);
+      }
+      #toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @keyframes rotateCW {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes rotateCCW {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(-360deg);
+        }
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      @keyframes boatFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes seaMove {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* @keyframes seaScroll {
+  from {
+    background-position: 0 bottom;
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+  to {
+    background-position: -1000px bottom;
+    -webkit-mask-position: -1000px 0;
+    mask-position: -1000px 0;
+  }
+} */
+      @keyframes pulseGlow {
+        0%,
+        100% {
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* .mercusuar-light-wrap {
+        position: absolute;
+        bottom: 7%;
+        left: 0;
+        width: 58%;
+        z-index: 7;
+        pointer-events: none;
+        overflow: visible;
+      }
+
+      .mercusuar-light {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      } */
+
+      /* CAHAYA MERCUSUAR */
+      .lighthouse-beam-wrap {
+        position: absolute;
+        bottom: 88%;
+        left: 50%;
+        width: 58%;
+        z-index: 7;
+        pointer-events: none;
+        animation: twinkle 3s infinite ease-in-out;
+      }
+
+      .lighthouse-head {
+        position: absolute;
+        bottom: 72%;
+        left: 50%;
+        transform: translateX(-46%);
+        width: 1px;
+        height: 1px;
+      }
+
+      .beam-rotator {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        transform: rotate(135deg);
+        transform-origin: 0 0;
+        animation: beamPulse 4s ease-in-out infinite;
+      }
+      .beam {
+        position: absolute;
+        width: 900px;
+        height: 900px;
+        margin-left: -450px;
+        margin-top: -450px;
+        background: conic-gradient(
+          from -22deg at 50% 50%,
+          transparent 0deg,
+          rgba(255, 240, 180, 0.35) 4deg,
+          rgba(255, 240, 180, 0.55) 7deg,
+          rgba(255, 240, 180, 0.35) 11deg,
+          transparent 14deg,
+          transparent 360deg
+        );
+        border-radius: 50%;
+        filter: blur(6px);
+      }
+
+      .beam-rotator-2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        transform: rotate(135deg);
+        transform-origin: 0 0;
+        animation: beamPulse 4s ease-in-out infinite;
+        animation-delay: -2s;
+      }
+      .beam-2 {
+        position: absolute;
+        width: 900px;
+        height: 900px;
+        margin-left: -450px;
+        margin-top: -450px;
+        background: conic-gradient(
+          from -22deg at 50% 50%,
+          transparent 0deg,
+          rgba(255, 240, 180, 0.15) 5deg,
+          rgba(255, 240, 180, 0.25) 7deg,
+          rgba(255, 240, 180, 0.15) 10deg,
+          transparent 14deg,
+          transparent 360deg
+        );
+        border-radius: 50%;
+        filter: blur(8px);
+      }
+
+      .lighthouse-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 220, 1) 0%,
+          rgba(255, 240, 160, 0.9) 25%,
+          rgba(255, 220, 80, 0.4) 55%,
+          transparent 75%
+        );
+        animation: coronaPulse 2s ease-in-out infinite;
+        z-index: 2;
+      }
+
+      .lighthouse-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          transparent 30%,
+          rgba(255, 240, 160, 0.12) 50%,
+          rgba(255, 220, 80, 0.06) 70%,
+          transparent 80%
+        );
+        animation: ringPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes beamSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes coronaPulse {
+        0%,
+        100% {
+          opacity: 0.8;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.15);
+        }
+      }
+      @keyframes ringPulse {
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.3);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .open-btn {
+          bottom: 40%;
+        }
+        .cover-couple {
+          top: 37%;
+        }
+        .cover-guest {
+          top: 45%;
+        }
+
+        .mercusuar-wrap {
+          width: 85%;
+          bottom: 7%;
+        }
+        .ombak {
+          width: 175%;
+        }
+        /* .ombakwrap{
+
+        } */
+        .kapal {
+          width: 10%;
+          right: 10%;
+          bottom: 23.5%;
+          animation: boatFloat 6s ease-in-out infinite;
+          /* right: 0%; */
+        }
+        .rasi1,
+        .rasi2 {
+          width: 59%;
+        }
+        .beam,
+        .beam-2 {
+          width: 600px;
+          height: 600px;
+          margin-left: -300px;
+          margin-top: -300px;
+        }
+        .lighthouse-glow {
+          width: 20px;
+          height: 20px;
+        }
+        .lighthouse-ring {
+          width: 44px;
+          height: 44px;
+        }
+      }
+      @media (max-width: 412px) {
+        .kapal {
+          bottom: 23.4%;
+        }
+      }
+      @media (max-width: 380px) {
+        .ombakwrap {
+          bottom: -2%;
+        }
+        .kapal {
+          bottom: 22.5%;
+        }
+      }
+      @media (max-width: 360px) {
+        .kapal {
+          bottom: 22.5%;
+        }
+        .ombakwrap {
+          bottom: -1%;
+        }
+      }
+
+      /* #sky-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .aurora {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .aurora-band {
+        position: absolute;
+        width: 200%;
+        height: 340px;
+        border-radius: 50%;
+        opacity: 0;
+        filter: blur(60px);
+      }
+      .aurora-band.a1 {
+        top: -60px;
+        left: -50%;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(62, 35, 150, 0.55) 0%,
+          transparent 70%
+        );
+        animation: auroraFloat1 14s ease-in-out infinite;
+      }
+      .aurora-band.a2 {
+        top: -30px;
+        left: -20%;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(20, 80, 160, 0.4) 0%,
+          transparent 65%
+        );
+        animation: auroraFloat2 18s ease-in-out infinite;
+      }
+      .aurora-band.a3 {
+        top: 10px;
+        left: -30%;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(100, 40, 180, 0.3) 0%,
+          transparent 65%
+        );
+        animation: auroraFloat3 22s ease-in-out infinite;
+      }
+      @keyframes auroraFloat1 {
+        0% {
+          opacity: 0;
+          transform: translateX(0) scaleY(1);
+        }
+        15% {
+          opacity: 0.9;
+        }
+        50% {
+          opacity: 0.6;
+          transform: translateX(8%) scaleY(1.15);
+        }
+        85% {
+          opacity: 0.9;
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(0) scaleY(1);
+        }
+      }
+      @keyframes auroraFloat2 {
+        0% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+        20% {
+          opacity: 0.7;
+        }
+        55% {
+          opacity: 0.45;
+          transform: translateX(-6%);
+        }
+        80% {
+          opacity: 0.7;
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+      }
+      @keyframes auroraFloat3 {
+        0% {
+          opacity: 0;
+          transform: translateX(0) scaleX(1);
+        }
+        25% {
+          opacity: 0.5;
+        }
+        60% {
+          opacity: 0.3;
+          transform: translateX(5%) scaleX(1.1);
+        }
+        90% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(0) scaleX(1);
+        }
+      }
+
+      .moon-wrap {
+        position: absolute;
+        top: 32px;
+        right: 52px;
+        width: 64px;
+        height: 64px;
+
+        animation:
+          moonFloat 10s ease-in-out infinite,
+          moonGlow 6s ease-in-out infinite;
+        transform-origin: center center;
+        z-index: 2;
+      }
+
+      .moon-body {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 38% 38%,
+          #fdf4dd 0%,
+          #f5dfaa 25%,
+          #e8c97a 55%,
+          #c8a040 80%,
+          #8a6820 100%
+        );
+        box-shadow:
+          0 0 24px 8px rgba(215, 181, 109, 0.35),
+          0 0 60px 20px rgba(215, 181, 109, 0.12);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .moon-crater {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(130, 90, 20, 0.18);
+      }
+      .moon-crater.c1 {
+        width: 14px;
+        height: 14px;
+        top: 16px;
+        left: 18px;
+      }
+      .moon-crater.c2 {
+        width: 8px;
+        height: 8px;
+        top: 34px;
+        left: 38px;
+      }
+      .moon-crater.c3 {
+        width: 6px;
+        height: 6px;
+        top: 12px;
+        left: 40px;
+      }
+      .moon-shadow {
+        position: absolute;
+        top: 0;
+        right: -2px;
+        width: 48px;
+        height: 64px;
+        border-radius: 0 50% 50% 0;
+        background: radial-gradient(
+          ellipse at 70% 50%,
+          rgba(3, 9, 24, 0.7) 0%,
+          transparent 70%
+        );
+      }
+
+      .moon-spark {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: white;
+        top: 18px;
+        left: 22px;
+
+        box-shadow:
+          0 0 8px white,
+          0 0 15px #fff7d0;
+
+        animation: sparkle 4s ease-in-out infinite;
+      } */
+
+      /* @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.4);
+        }
+      } */
+      /* Floating motion */
+      /* @keyframes moonFloat {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-6px) rotate(1deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(0deg);
+        }
+        75% {
+          transform: translateY(-4px) rotate(-1deg);
+        }
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+
+      @keyframes moonGlow {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 10px rgba(215, 181, 109, 0.35))
+            drop-shadow(0 0 25px rgba(215, 181, 109, 0.15));
+        }
+
+        50% {
+          filter: drop-shadow(0 0 20px rgba(215, 181, 109, 0.75))
+            drop-shadow(0 0 45px rgba(215, 181, 109, 0.35));
+        }
+      } */
+
+      .shooting-star {
+        position: absolute;
+        width: 1.5px;
+        height: 80px;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(255, 255, 255, 0.8),
+          rgba(255, 255, 255, 0.9)
+        );
+        border-radius: 2px;
+        opacity: 0;
+      }
+
+      .shooting-star.s1 {
+        top: -10%;
+        left: 20%;
+        transform: rotate(5deg);
+        animation: shootDown 8s linear infinite;
+      }
+      .shooting-star.s2 {
+        top: -10%;
+        left: 55%;
+        transform: rotate(-4deg);
+        animation: shootDown 8s 3.2s linear infinite;
+      }
+      .shooting-star.s3 {
+        top: -10%;
+        left: 75%;
+        transform: rotate(6deg);
+        animation: shootDown 8s 5.8s linear infinite;
+      }
+
+      .shooting-star.s1 {
+        --tilt: 5deg;
+      }
+      .shooting-star.s2 {
+        --tilt: -4deg;
+      }
+      .shooting-star.s3 {
+        --tilt: 6deg;
+      }
+
+      @keyframes shootDown {
+        0% {
+          opacity: 0;
+          transform: translateY(0) rotate(var(--tilt));
+        }
+        5% {
+          opacity: 1;
+        }
+        40% {
+          opacity: 0;
+          transform: translateY(120vh) rotate(var(--tilt));
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(120vh) rotate(var(--tilt));
+        }
+      }
+
+      .shooting-star {
+        animation-name: shootDown;
+      }
+
+      .constellation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        pointer-events: none;
+        opacity: 0.22;
+        animation: twinkle 3s infinite ease-in-out;
+      }
+
+      /* .cloud-layer {
+        position: absolute;
+        bottom: 80px;
+        left: 0;
+        width: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        height: 120px;
+      }
+      .cloud {
+        position: absolute;
+        bottom: 0;
+        border-radius: 60px;
+        background: rgba(30, 50, 110, 0.22);
+        filter: blur(18px);
+      }
+      .cloud.c1 {
+        width: 260px;
+        height: 50px;
+        left: -40px;
+        animation: cloudDrift 40s linear infinite;
+      }
+      .cloud.c2 {
+        width: 180px;
+        height: 38px;
+        left: 30%;
+        animation: cloudDrift 55s 8s linear infinite;
+        opacity: 0.7;
+      }
+      .cloud.c3 {
+        width: 300px;
+        height: 55px;
+        right: -60px;
+        animation: cloudDrift2 48s linear infinite;
+      } */
+      @keyframes cloudDrift {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(110vw);
+        }
+      }
+      @keyframes cloudDrift2 {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-110vw);
+        }
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 15vh 24px 100px;
+        position: relative;
+        background: transparent;
+        /* background:
+          radial-gradient(
+            ellipse 100% 60% at 50% -5%,
+            #112068 0%,
+            transparent 55%
+          ),
+          url("https://s13.gifyu.com/images/bIouF.png") no-repeat center top
+            fixed;
+        background-size: cover; */
+        /* overflow: hidden; */
+      }
+
+      .corner-ornament {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        pointer-events: none;
+      }
+      .corner-ornament.tl {
+        top: 18px;
+        left: 18px;
+        border-left: 1.5px solid rgba(215, 181, 109, 0.45);
+        border-top: 1.5px solid rgba(215, 181, 109, 0.45);
+      }
+      .corner-ornament.tr {
+        top: 18px;
+        right: 18px;
+        border-right: 1.5px solid rgba(215, 181, 109, 0.45);
+        border-top: 1.5px solid rgba(215, 181, 109, 0.45);
+      }
+      .corner-ornament.bl {
+        bottom: 100px;
+        left: 18px;
+        border-left: 1.5px solid rgba(215, 181, 109, 0.45);
+        border-bottom: 1.5px solid rgba(215, 181, 109, 0.45);
+      }
+      .corner-ornament.br {
+        bottom: 100px;
+        right: 18px;
+        border-right: 1.5px solid rgba(215, 181, 109, 0.45);
+        border-bottom: 1.5px solid rgba(215, 181, 109, 0.45);
+      }
+
+      .hex-wrap {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 37px;
+      }
+      .hex-border-ring {
+        position: absolute;
+        width: 234px;
+        height: 234px;
+        top: -7px;
+        left: -7px;
+        clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+        background: linear-gradient(
+          135deg,
+          #d7b56d 0%,
+          rgba(215, 181, 109, 0.15) 50%,
+          #d7b56d 100%
+        );
+        animation: ringPulse 4s ease-in-out infinite;
+      }
+      @keyframes ringPulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.65;
+          filter: drop-shadow(0 0 8px rgba(215, 181, 109, 0.5));
+        }
+      }
+      .hex-inner {
+        width: 220px;
+        height: 220px;
+        clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+        overflow: hidden;
+        background: linear-gradient(
+          160deg,
+          #1a3060 0%,
+          #0a1535 50%,
+          #1a1060 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(215, 181, 109, 0.35);
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 11px;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .hex-inner img {
+        width: 100%;
+        object-fit: cover;
+      }
+      .hex-top-ornament,
+      .hex-bot-ornament {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--gold);
+        font-size: 10px;
+        opacity: 0.7;
+      }
+      .hex-top-ornament {
+        top: -16px;
+      }
+      .hex-bot-ornament {
+        bottom: -16px;
+      }
+
+      .hex-orbit {
+        position: absolute;
+        width: 260px;
+        height: 260px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        border-radius: 50%;
+        border: 1px solid rgba(215, 181, 109, 0.1);
+        animation: orbitRotate 30s linear infinite;
+      }
+      .hex-orbit::before {
+        content: "◆";
+        position: absolute;
+        top: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(215, 181, 109, 0.5);
+        font-size: 8px;
+      }
+      .hex-orbit::after {
+        content: "◆";
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(215, 181, 109, 0.3);
+        font-size: 6px;
+      }
+      @keyframes orbitRotate {
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      .hero-names {
+        font-family: "Cinzel", serif;
+        font-size: clamp(22px, 6.5vw, 34px);
+        font-weight: 400;
+        color: var(--gold-light);
+        letter-spacing: 4px;
+        text-align: center;
+        text-shadow: 0 0 30px rgba(215, 181, 109, 0.4);
+        margin-bottom: 4px;
+      }
+      .hero-names .amp {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        color: var(--gold);
+        font-size: 1.15em;
+      }
+      .hero-tagline {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 13px;
+        font-style: italic;
+        color: rgba(200, 190, 230, 0.55);
+        letter-spacing: 3px;
+        text-align: center;
+        margin-bottom: 24px;
+        animation: taglineFade 5s ease-in-out infinite;
+      }
+      @keyframes taglineFade {
+        0%,
+        100% {
+          opacity: 0.55;
+        }
+        50% {
+          opacity: 0.85;
+        }
+      }
+
+      .date-ornament-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 10px;
+        gap: 4px;
+        color: rgba(215, 181, 109, 0.55);
+      }
+      .date-col {
+        padding: 10px 18px;
+        text-align: center;
+      }
+      .date-col .dlabel {
+        font-size: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(215, 181, 109, 0.55);
+        display: block;
+        margin-bottom: 2px;
+      }
+      .date-col .dval {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(20px, 6vw, 30px);
+        color: #fff;
+        font-weight: 300;
+        line-height: 1;
+      }
+      .date-col .dsub {
+        font-size: 9px;
+        letter-spacing: 2px;
+        color: var(--gold);
+        text-transform: uppercase;
+        display: block;
+        margin-top: 2px;
+      }
+      .date-vsep {
+        width: 1px;
+        background: rgba(215, 181, 109, 0.2);
+        align-self: stretch;
+      }
+
+      .scroll-hint {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        animation: bounceHint 2s ease-in-out infinite;
+        margin-top: 8px;
+      }
+      .scroll-hint span {
+        font-size: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(215, 181, 109, 0.4);
+      }
+      @keyframes bounceHint {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(6px);
+        }
+      }
+
+      #star-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .reveal.visible .hero-names {
+        letter-spacing: 4px;
+      }
+
+      /* Animasi 3D Flip untuk karakter '&' */
+      .reveal.visible .hero-names .amp {
+        transform: scale(1) rotateY(0deg);
+        opacity: 1;
+      }
+
+      @keyframes shineGlint {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      .hero-tagline {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 13px;
+        font-style: italic;
+        color: rgba(200, 190, 230, 0.7);
+        letter-spacing: 3px;
+        text-align: center;
+        margin-bottom: 24px;
+        opacity: 0;
+        transform: translateY(8px);
+        transition:
+          opacity 1.2s ease 0.6s,
+          transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.6s;
+      }
+      .reveal.visible .hero-tagline {
+        opacity: 0.75;
+        transform: translateY(0);
+        animation: taglineBreathing 4s ease-in-out infinite 1.8s;
+      }
+      @keyframes taglineBreathing {
+        0%,
+        100% {
+          opacity: 0.6;
+          filter: blur(0px);
+        }
+        50% {
+          opacity: 0.9;
+          filter: drop-shadow(0 0 2px rgba(215, 181, 109, 0.3));
+        }
+      }
+
+      /* ── REVEAL VARIATIONS ── */
+      .rev-up {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      .rev-down {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      .rev-left {
+        transform: translateX(-60px);
+        opacity: 0;
+      }
+      .rev-right {
+        transform: translateX(60px);
+        opacity: 0;
+      }
+      .rev-zoom {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      .reveal.visible.rev-up,
+      .reveal.visible.rev-down,
+      .reveal.visible.rev-left,
+      .reveal.visible.rev-right,
+      .reveal.visible.rev-zoom {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+
+      /* ── STAGGERED DELAYS ── */
+      .d-1 {
+        transition-delay: 0.1s !important;
+      }
+      .d-2 {
+        transition-delay: 0.2s !important;
+      }
+      .d-3 {
+        transition-delay: 0.3s !important;
+      }
+      .d-4 {
+        transition-delay: 0.4s !important;
+      }
+      .d-5 {
+        transition-delay: 0.5s !important;
+      }
+
+      /* ── STORY ENHANCEMENTS ── */
+      .story-photo-inner {
+        overflow: hidden;
+      }
+      .story-photo-inner img {
+        transition: transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+        transform: scale(1.3);
+      }
+      .reveal.visible .story-photo-inner img {
+        transform: scale(1);
+      }
+
+      .story-body p {
+        transition:
+          opacity 1s ease,
+          transform 1s ease;
+      }
+
+      /* ── GALLERY ENHANCEMENTS ── */
+      .gallery-item-wrap {
+        transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .gallery-item-wrap:hover {
+        transform: scale(1.02);
+      }
+      .gallery-item-wrap:hover .hex-border-ring {
+        animation: ringPulse 1.5s infinite;
+      }
+
+      /* Text reveal effect */
+      /* .text-reveal {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: bottom;
+      }
+      .text-reveal span {
+        display: inline-block;
+        transform: translateY(110%);
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      } */
+      .reveal.visible .text-reveal span {
+        transform: translateY(0);
+      }
+      /* Countdown Sparks */
+      .cd-spark {
+        position: absolute;
+        pointer-events: none;
+        color: var(--gold-light);
+        font-size: 14px;
+        z-index: 10;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+      }
+      @keyframes cdSparkFly {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)))
+            scale(1) rotate(45deg);
+          opacity: 0;
+        }
+      }
+      #events {
+        background-image: url("https://s13.gifyu.com/images/bIAsE.png");
+
+        /* 'cover' memastikan gambar memenuhi seluruh ruang kosong tanpa merusak rasio,
+     sangat baik untuk layar dengan ukuran bervariasi. */
+        background-size: cover;
+
+        /* Mulai gambar dari tengah atas agar bagian bintang di Hero tidak terpotong */
+        background-position: center top;
+
+        background-repeat: no-repeat;
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+      }
+      #countdown {
+        background-image: url("https://s13.gifyu.com/images/bIAs9.png");
+
+        /* 'cover' memastikan gambar memenuhi seluruh ruang kosong tanpa merusak rasio,
+     sangat baik untuk layar dengan ukuran bervariasi. */
+        background-size: cover;
+
+        /* Mulai gambar dari tengah atas agar bagian bintang di Hero tidak terpotong */
+        background-position: center top;
+
+        background-repeat: no-repeat;
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- COVER -->
+    <div id="cover">
+      <div class="cover-inner reveal">
+        <img src="https://s13.gifyu.com/images/bIouC.png" class="bg" alt="" />
+        <img
+          src="https://s13.gifyu.com/images/bIon5.png"
+          class="rasi1"
+          alt=""
+        />
+        <img
+          src="https://s13.gifyu.com/images/bIont.png"
+          class="rasi2"
+          alt=""
+        />
+
+        <div class="cover-couple">
+          <h1>Alvin &amp; Risma</h1>
+        </div>
+
+        <div class="cover-guest">
+          Kepada:
+          <span id="guestName">Tamu Undangan</span>
+        </div>
+
+        <div
+          style="
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 500px;
+            pointer-events: none;
+            z-index: 5;
+          "
+        >
+          <!-- 1. Ombak (paling bawah) -->
+          <div class="ombakwrap" style="overflow: hidden">
+            <div
+              style="
+                display: flex;
+                width: 200%;
+                animation: seaMove 120s linear infinite;
+                opacity: 0.7;
+                -webkit-mask-image: linear-gradient(
+                  to right,
+                  transparent 0%,
+                  black 8%,
+                  black 92%,
+                  transparent 100%
+                );
+                -webkit-mask-size: 50% 100%;
+                -webkit-mask-repeat: repeat-x;
+                mask-image: linear-gradient(
+                  to right,
+                  transparent 0%,
+                  black 8%,
+                  black 92%,
+                  transparent 100%
+                );
+                mask-size: 50% 100%;
+                mask-repeat: repeat-x;
+              "
+            >
+              <img
+                src="https://s13.gifyu.com/images/bI1pl.png"
+                style="width: 50%; display: block"
+                alt=""
+              />
+              <img
+                src="https://s13.gifyu.com/images/bI1pl.png"
+                style="width: 50%; display: block"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <!-- 2. Mercusuar -->
+          <div
+            style="
+              position: absolute;
+              bottom: 5rem;
+              left: -0.7rem;
+              width: 65%;
+              z-index: 2;
+            "
+          >
+            <img
+              src="https://s13.gifyu.com/images/bIouG.png"
+              style="width: 100%; opacity: 0.85"
+              alt=""
+            />
+
+            <!-- 4. Cahaya (Di atas mercusuar) -->
+            <div class="lighthouse-beam-wrap" style="z-index: 10">
+              <div class="lighthouse-head">
+                <div class="beam-rotator">
+                  <div class="beam"></div>
+                </div>
+                <div class="beam-rotator-2">
+                  <div class="beam-2"></div>
+                </div>
+                <div class="lighthouse-glow"></div>
+                <div class="lighthouse-ring"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Kapal -->
+          <img
+            src="https://s13.gifyu.com/images/bIouO.png"
+            class="kapal"
+            style="animation: boatFloat 4s ease-in-out infinite"
+            alt=""
+          />
+        </div>
+
+        <button class="open-btn">BUKA UNDANGAN</button>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div id="main">
+      <audio id="audio" loop preload="none"></audio>
+      <div id="toast"></div>
+      <button id="musicBtn" onclick="toggleMusic()" aria-label="Toggle music">
+        ▶
+      </button>
+      <div
+        class="bg1"
+        style="
+          background-image: url(&quot;https://s13.gifyu.com/images/bIAs3.png&quot;);
+          background-size: cover;
+
+          background-position: center top;
+
+          background-repeat: no-repeat;
+          width: 100%;
+          min-height: 100vh;
+          position: relative;
+        "
+      >
+        <section id="hero">
+          <canvas id="star-canvas"></canvas>
+
+          <div class="shooting-star s1"></div>
+          <div class="shooting-star s2"></div>
+          <div class="shooting-star s3"></div>
+
+          <div class="corner-ornament tl reveal"></div>
+          <div class="corner-ornament tr reveal"></div>
+          <div class="corner-ornament bl reveal"></div>
+          <div class="corner-ornament br reveal"></div>
+
+          <div class="hex-wrap reveal">
+            <div class="hex-orbit"></div>
+            <div class="hex-border-ring"></div>
+            <div class="hex-inner">
+              <img
+                src="https://s13.gifyu.com/images/bd2Bm.jpg"
+                alt="Foto Alvin & Risma"
+                style="transform: scale(1.2) translateY(-17%)"
+              />
+            </div>
+            <div class="hex-top-ornament">◆</div>
+            <div class="hex-bot-ornament">◆</div>
+          </div>
+          <div class="reveal" style="text-align: center">
+            <div class="hero-names">
+              ALVIN <span class="amp">&amp;</span> RISMA
+            </div>
+            <div class="hero-tagline">Dua Pijar, Satu Semesta</div>
+          </div>
+          <div class="date reveal">
+            <img
+              src="https://s13.gifyu.com/images/bIouy.png"
+              class="ornamen"
+              alt=""
+            />
+            <div class="hero-date">Minggu | 28 Juni | 2026</div>
+          </div>
+
+          <!-- <div class="scroll-hint reveal">
+          <svg
+            width="14"
+            height="26"
+            viewBox="0 0 14 26"
+            fill="none"
+            stroke="rgba(215,181,109,0.4)"
+            stroke-width="1.2"
+            stroke-linecap="round"
+          >
+            <rect x="1" y="1" width="12" height="20" rx="6" />
+            <line x1="7" y1="5" x2="7" y2="9" />
+            <polyline points="4,22 7,25 10,22" />
+          </svg>
+          <span>Scroll</span>
+        </div> -->
+        </section>
+
+        <!-- COUPLE -->
+        <section id="couple" class="section">
+          <canvas id="couple-canvas"></canvas>
+
+          <div class="reveal">
+            <div class="sec-label">The Couple</div>
+            <div class="sec-title">Mempelai</div>
+            <div class="sec-sub">Yang Berbahagia</div>
+          </div>
+
+          <div class="couple-card reveal" id="card-groom">
+            <div class="sm-hex-wrap">
+              <div class="sm-hex-border"></div>
+              <div class="sm-hex-inner">
+                <img
+                  src="https://s13.gifyu.com/images/bd2B4.jpg"
+                  alt=""
+                  srcset=""
+                  style="transform: translateX(6%) translateY(-4%)"
+                />
+                <div class="hex-shimmer"></div>
+              </div>
+            </div>
+            <div>
+              <div class="couple-name">Alvin</div>
+              <div class="couple-fullname">
+                ALVIN NUGRAHA KUSUMA SATYA, S.Sn., M.A.
+              </div>
+              <div class="couple-parents-wrap">
+                <div class="parents-label">Putra dari</div>
+                <div class="parent-entry">
+                  <span class="parent-title-tag">Bapak</span>
+                  <span class="parent-name-val">M. Yani Hasbullah</span>
+                </div>
+                <div class="parent-entry">
+                  <span class="parent-title-tag">Ibu</span>
+                  <span class="parent-name-val">Thaybah</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="amp-sep reveal">
+            <div class="aline"></div>
+            <div class="atext">&amp;</div>
+            <div class="aline"></div>
+          </div>
+
+          <div class="couple-card reveal" id="card-bride">
+            <div class="sm-hex-wrap">
+              <div class="sm-hex-border"></div>
+              <div class="sm-hex-inner">
+                <img
+                  src="https://s13.gifyu.com/images/bd2B6.jpg"
+                  alt=""
+                  srcset=""
+                  style="transform: translateX(3%) translateY(9%)"
+                />
+                <div class="hex-shimmer"></div>
+              </div>
+            </div>
+            <div>
+              <div class="couple-name">Risma</div>
+              <div class="couple-fullname">RISMA DWI SANDRA, S.E.</div>
+              <div class="couple-parents-wrap">
+                <div class="parents-label">Putri dari</div>
+                <div class="parent-entry">
+                  <span class="parent-title-tag">Bapak</span>
+                  <span class="parent-name-val">Akhmad</span>
+                </div>
+                <div class="parent-entry">
+                  <span class="parent-title-tag">Ibu</span>
+                  <span class="parent-name-val">Saidah Balkis</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- SECTIONS EVENT DETAILS -->
+      <section id="events" class="section" style="padding: 0">
+        <div style="padding: 60px 24px 60px; position: relative">
+          <div style="text-align: center; margin-bottom: 36px">
+            <div class="sec-label">Event Details</div>
+            <div class="sec-title" style="line-height: 1.4">
+              Event Details<br />
+              <em
+                style="
+                  font-family: &quot;Cormorant Garamond&quot;, serif;
+                  font-style: italic;
+                  font-size: 0.75em;
+                  letter-spacing: 1px;
+                "
+                >and</em
+              >
+              Map
+            </div>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 0;
+              max-width: 420px;
+              margin: 0 auto;
+            "
+          >
+            <div
+              style="
+                border: 1px solid rgba(215, 181, 109, 0.18);
+                border-radius: 12px;
+                padding: 22px;
+                margin-bottom: 16px;
+                background-color: rgb(4, 14, 40);
+                position: relative;
+              "
+              class="reveal"
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  height: 1px;
+                  background: linear-gradient(
+                    to right,
+                    transparent,
+                    rgba(215, 181, 109, 0.4),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  font-size: 8px;
+                  font-weight: 700;
+                  letter-spacing: 4px;
+                  text-transform: uppercase;
+                  color: rgba(215, 181, 109, 0.55);
+                  margin-bottom: 14px;
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                "
+              >
+                When &amp; Where
+                <span
+                  style="
+                    flex: 1;
+                    height: 1px;
+                    background: rgba(215, 181, 109, 0.15);
+                    display: block;
+                  "
+                ></span>
+              </div>
+
+              <div
+                style="
+                  display: flex;
+                  gap: 12px;
+                  align-items: flex-start;
+                  margin-bottom: 14px;
+                "
+              >
+                <div
+                  style="
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    border: 1px solid rgba(215, 181, 109, 0.3);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#d7b56d"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                </div>
+                <div>
+                  <div
+                    style="
+                      font-family: &quot;Cinzel&quot;, serif;
+                      font-size: 10px;
+                      letter-spacing: 2px;
+                      color: var(--gold);
+                      margin-bottom: 3px;
+                    "
+                  >
+                    Hari &amp; Tanggal
+                  </div>
+                  <div
+                    style="
+                      font-family: &quot;Cormorant Garamond&quot;, serif;
+                      font-size: 17px;
+                      color: rgba(255, 255, 255, 0.8);
+                    "
+                  >
+                    Minggu, 28 Juni 2026
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px; align-items: flex-start">
+                <div
+                  style="
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    border: 1px solid rgba(215, 181, 109, 0.3);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#d7b56d"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <div
+                    style="
+                      font-family: &quot;Cinzel&quot;, serif;
+                      font-size: 10px;
+                      letter-spacing: 2px;
+                      color: var(--gold);
+                      margin-bottom: 3px;
+                    "
+                  >
+                    Tempat
+                  </div>
+                  <div
+                    style="
+                      font-family: &quot;Cormorant Garamond&quot;, serif;
+                      font-size: 17px;
+                      color: rgba(255, 255, 255, 0.8);
+                    "
+                  >
+                    Gedung Anggi &ndash; Islamic Center
+                  </div>
+                  <div
+                    style="
+                      font-size: 12px;
+                      color: rgba(215, 181, 109, 0.55);
+                      letter-spacing: 0.5px;
+                      margin-top: 2px;
+                    "
+                  >
+                    Samarinda, Kalimantan Timur
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                border: 1px solid rgba(215, 181, 109, 0.18);
+                border-radius: 12px;
+                padding: 22px;
+                margin-bottom: 16px;
+
+                background-color: rgb(4, 14, 40);
+                position: relative;
+              "
+              class="reveal"
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  height: 1px;
+                  background: linear-gradient(
+                    to right,
+                    transparent,
+                    rgba(215, 181, 109, 0.4),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  font-size: 8px;
+                  font-weight: 700;
+                  letter-spacing: 4px;
+                  text-transform: uppercase;
+                  color: rgba(215, 181, 109, 0.55);
+                  margin-bottom: 14px;
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                "
+              >
+                Schedule
+                <span
+                  style="
+                    flex: 1;
+                    height: 1px;
+                    background: rgba(215, 181, 109, 0.15);
+                    display: block;
+                  "
+                ></span>
+              </div>
+              <div style="display: flex; flex-direction: column">
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: 70px 20px 1fr;
+                    gap: 0 12px;
+                    align-items: stretch;
+                    padding: 10px 0;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: &quot;Cinzel&quot;, serif;
+                      font-size: 11px;
+                      letter-spacing: 1px;
+                      color: var(--gold);
+                      text-align: right;
+                      padding-top: 3px;
+                    "
+                  >
+                    08.00
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 9px;
+                        height: 9px;
+                        border-radius: 50%;
+                        background: var(--gold);
+                        border: 1.5px solid var(--gold);
+                        margin-top: 4px;
+                        z-index: 1;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 1px;
+                        flex: 1;
+                        background: rgba(215, 181, 109, 0.2);
+                        margin-top: 3px;
+                      "
+                    ></div>
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        font-family: &quot;Cormorant Garamond&quot;, serif;
+                        font-size: 17px;
+                        color: rgba(255, 255, 255, 0.8);
+                      "
+                    >
+                      Akad Nikah
+                    </div>
+                    <div
+                      style="
+                        font-size: 11px;
+                        color: rgba(215, 181, 109, 0.45);
+                        letter-spacing: 1px;
+                      "
+                    >
+                      Ijab Kabul
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: 70px 20px 1fr;
+                    gap: 0 12px;
+                    align-items: stretch;
+                    padding: 10px 0;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: &quot;Cinzel&quot;, serif;
+                      font-size: 11px;
+                      letter-spacing: 1px;
+                      color: var(--gold);
+                      text-align: right;
+                      padding-top: 3px;
+                    "
+                  >
+                    11.00
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 9px;
+                        height: 9px;
+                        border-radius: 50%;
+                        background: #030918;
+                        border: 1.5px solid rgba(215, 181, 109, 0.6);
+                        margin-top: 4px;
+                        z-index: 1;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 1px;
+                        flex: 1;
+                        background: rgba(215, 181, 109, 0.2);
+                        margin-top: 3px;
+                      "
+                    ></div>
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        font-family: &quot;Cormorant Garamond&quot;, serif;
+                        font-size: 17px;
+                        color: rgba(255, 255, 255, 0.8);
+                      "
+                    >
+                      Resepsi
+                    </div>
+                    <div
+                      style="
+                        font-size: 11px;
+                        color: rgba(215, 181, 109, 0.45);
+                        letter-spacing: 1px;
+                      "
+                    >
+                      Penerimaan tamu undangan
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: 70px 20px 1fr;
+                    gap: 0 12px;
+                    align-items: stretch;
+                    padding: 10px 0;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: &quot;Cinzel&quot;, serif;
+                      font-size: 11px;
+                      letter-spacing: 1px;
+                      color: var(--gold);
+                      text-align: right;
+                      padding-top: 3px;
+                    "
+                  >
+                    15.00
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 9px;
+                        height: 9px;
+                        border-radius: 50%;
+                        background: #030918;
+                        border: 1.5px solid rgba(215, 181, 109, 0.6);
+                        margin-top: 4px;
+                        z-index: 1;
+                      "
+                    ></div>
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        font-family: &quot;Cormorant Garamond&quot;, serif;
+                        font-size: 17px;
+                        color: rgba(255, 255, 255, 0.8);
+                      "
+                    >
+                      Selesai
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                border: 1px solid rgba(215, 181, 109, 0.2);
+                border-radius: 12px;
+                overflow: hidden;
+                margin-bottom: 20px;
+              "
+              class="reveal"
+            >
+              <svg
+                width="100%"
+                viewBox="0 0 340 220"
+                xmlns="http://www.w3.org/2000/svg"
+                style="display: block; background: #040e28"
+              >
+                <defs>
+                  <radialGradient id="mapglow2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#0d2060" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#030918" stop-opacity="0" />
+                  </radialGradient>
+                  <radialGradient id="starglow2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#d7b56d" stop-opacity="0.6" />
+                    <stop offset="100%" stop-color="#d7b56d" stop-opacity="0" />
+                  </radialGradient>
+                  <filter id="mglow">
+                    <feGaussianBlur stdDeviation="1.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <rect width="340" height="220" fill="#040e28" />
+                <image
+                  href="https://s13.gifyu.com/images/bd2Pc.png"
+                  x="0"
+                  y="0"
+                  width="340"
+                  height="220"
+                  preserveAspectRatio="xMidYMid slice"
+                  opacity="0.3"
+                  style="mix-blend-mode: screen"
+                />
+                <ellipse
+                  cx="140"
+                  cy="110"
+                  rx="130"
+                  ry="90"
+                  fill="url(#mapglow2)"
+                />
+
+                <circle
+                  cx="144"
+                  cy="129"
+                  r="32"
+                  fill="url(#starglow2)"
+                  opacity="0.5"
+                />
+                <circle
+                  cx="144"
+                  cy="129"
+                  r="22"
+                  fill="rgba(215,181,109,0.05)"
+                  stroke="rgba(215,181,109,0.2)"
+                  stroke-width="0.8"
+                  stroke-dasharray="4 3"
+                />
+                <circle
+                  cx="144"
+                  cy="129"
+                  r="15"
+                  fill="rgba(215,181,109,0.08)"
+                  stroke="rgba(215,181,109,0.3)"
+                  stroke-width="0.8"
+                />
+
+                <!-- Ganti polygon bintang dengan ikon masjid -->
+                <g
+                  transform="translate(130, 130) rotate(-50) scale(0.055)"
+                  filter="url(#mglow)"
+                >
+                  <rect x="0" y="80" width="30" height="210" fill="#d7b56d" />
+                  <path d="M0 80 Q15 50 30 80 Z" fill="#d7b56d" />
+                  <rect x="55" y="110" width="24" height="180" fill="#d7b56d" />
+                  <path d="M55 110 Q67 85 79 110 Z" fill="#d7b56d" />
+                  <path
+                    d="M90 175 Q90 140 108 132 Q126 140 126 175 Z"
+                    fill="#d7b56d"
+                  />
+                  <path
+                    d="M126 195 Q126 120 185 105 Q244 120 244 195 Z"
+                    fill="#d7b56d"
+                  />
+                  <path
+                    d="M244 175 Q244 140 262 132 Q280 140 280 175 Z"
+                    fill="#d7b56d"
+                  />
+                  <rect
+                    x="291"
+                    y="110"
+                    width="24"
+                    height="180"
+                    fill="#d7b56d"
+                  />
+                  <path d="M291 110 Q303 85 315 110 Z" fill="#d7b56d" />
+                  <rect x="340" y="80" width="30" height="210" fill="#d7b56d" />
+                  <path d="M340 80 Q355 50 370 80 Z" fill="#d7b56d" />
+                  <rect
+                    x="88"
+                    y="175"
+                    width="195"
+                    height="115"
+                    fill="#d7b56d"
+                  />
+                  <path
+                    d="M115 290 L115 245 Q128 233 141 245 L141 290 Z"
+                    fill="#040e28"
+                  />
+                  <path
+                    d="M150 290 L150 245 Q163 233 176 245 L176 290 Z"
+                    fill="#040e28"
+                  />
+                  <path
+                    d="M185 290 L185 245 Q198 233 211 245 L211 290 Z"
+                    fill="#040e28"
+                  />
+                  <path
+                    d="M220 290 L220 245 Q233 233 246 245 L246 290 Z"
+                    fill="#040e28"
+                  />
+                  <line
+                    x1="185"
+                    y1="105"
+                    x2="185"
+                    y2="85"
+                    stroke="#d7b56d"
+                    stroke-width="4"
+                  />
+                  <path
+                    d="M178 80 Q186 72 194 80 Q186 84 178 80 Z"
+                    fill="#d7b56d"
+                  />
+                </g>
+                <line
+                  x1="138"
+                  y1="99"
+                  x2="138"
+                  y2="72"
+                  stroke="rgba(215,181,109,0.5)"
+                  stroke-width="0.8"
+                  stroke-dasharray="3 2"
+                />
+                <rect
+                  x="98"
+                  y="54"
+                  width="80"
+                  height="18"
+                  rx="4"
+                  fill="rgba(3,9,24,0.9)"
+                  stroke="rgba(215,181,109,0.4)"
+                  stroke-width="0.8"
+                />
+                <text
+                  x="138"
+                  y="67"
+                  text-anchor="middle"
+                  font-family="Cinzel, serif"
+                  font-size="8"
+                  fill="#d7b56d"
+                  letter-spacing="0.5"
+                >
+                  Islamic Center
+                </text>
+                <text
+                  x="170"
+                  y="213"
+                  text-anchor="middle"
+                  font-family="Lato, sans-serif"
+                  font-size="8"
+                  fill="rgba(215,181,109,0.35)"
+                  letter-spacing="2"
+                >
+                  SAMARINDA · KALIMANTAN TIMUR
+                </text>
+              </svg>
+            </div>
+
+            <a
+              href="https://maps.app.goo.gl/tCj47c6vSxTj5AkHA?g_st=ic"
+              target="_blank"
+              class="btn-directions reveal"
+            >
+              GET DIRECTIONS
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- COUNTDOWN -->
+      <section id="countdown" class="section" style="padding: 0">
+        <div
+          style="
+            padding: 60px 24px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          "
+        >
+          <div class="sec-label">Countdown</div>
+          <div class="sec-title" style="margin-bottom: 4px">
+            Countdown to Our Day
+          </div>
+          <div
+            style="
+              font-family: &quot;Cormorant Garamond&quot;, serif;
+              font-size: 16px;
+              font-weight: 600;
+              font-style: italic;
+              color: rgba(215, 181, 109, 0.75);
+              text-align: center;
+              letter-spacing: 2px;
+              margin-bottom: 36px;
+            "
+          >
+            Alvin &amp; Risma
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 40px 1fr;
+              grid-template-rows: auto auto;
+              width: 100%;
+              max-width: 360px;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 14px 8px;
+              "
+            >
+              <span
+                id="cd-days"
+                style="
+                  font-family: &quot;Cinzel Decorative&quot;, serif;
+                  font-size: clamp(44px, 14vw, 72px);
+                  font-weight: 400;
+                  color: var(--gold-light);
+                  line-height: 1;
+                  text-shadow: 0 0 30px rgba(215, 181, 109, 0.25);
+                "
+                >00</span
+              >
+              <span
+                style="
+                  font-size: 9px;
+                  font-weight: 700;
+                  letter-spacing: 4px;
+                  text-transform: uppercase;
+                  color: rgba(215, 181, 109, 0.55);
+                  margin-top: 6px;
+                "
+                >Days</span
+              >
+            </div>
+
+            <div
+              style="
+                grid-column: 2;
+                grid-row: 1/3;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: twinkle 3s infinite ease-in-out;
+              "
+            >
+              <svg
+                viewBox="0 0 28 280"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                style="height: 100%; min-height: 180px"
+              >
+                <line
+                  x1="14"
+                  y1="0"
+                  x2="14"
+                  y2="280"
+                  stroke="rgba(215,181,109,0.30)"
+                  stroke-width="0.8"
+                />
+                <circle cx="14" cy="30" r="1.5" fill="#d7b56d" opacity="0.6" />
+                <line
+                  x1="14"
+                  y1="26"
+                  x2="14"
+                  y2="34"
+                  stroke="#d7b56d"
+                  stroke-width="0.7"
+                  opacity="0.5"
+                />
+                <line
+                  x1="10"
+                  y1="30"
+                  x2="18"
+                  y2="30"
+                  stroke="#d7b56d"
+                  stroke-width="0.7"
+                  opacity="0.5"
+                />
+                <circle cx="14" cy="60" r="1" fill="#d7b56d" opacity="0.4" />
+                <circle cx="9" cy="85" r="1" fill="#d7b56d" opacity="0.35" />
+                <line
+                  x1="14"
+                  y1="60"
+                  x2="9"
+                  y2="85"
+                  stroke="#d7b56d"
+                  stroke-width="0.6"
+                  opacity="0.3"
+                />
+                <circle cx="18" cy="108" r="1" fill="#d7b56d" opacity="0.35" />
+                <line
+                  x1="9"
+                  y1="85"
+                  x2="18"
+                  y2="108"
+                  stroke="#d7b56d"
+                  stroke-width="0.6"
+                  opacity="0.3"
+                />
+                <circle cx="14" cy="140" r="3" fill="#d7b56d" opacity="0.85" />
+                <line
+                  x1="14"
+                  y1="133"
+                  x2="14"
+                  y2="147"
+                  stroke="#d7b56d"
+                  stroke-width="1"
+                  opacity="0.8"
+                />
+                <line
+                  x1="7"
+                  y1="140"
+                  x2="21"
+                  y2="140"
+                  stroke="#d7b56d"
+                  stroke-width="1"
+                  opacity="0.8"
+                />
+                <line
+                  x1="9"
+                  y1="135"
+                  x2="19"
+                  y2="145"
+                  stroke="#d7b56d"
+                  stroke-width="0.6"
+                  opacity="0.5"
+                />
+                <line
+                  x1="19"
+                  y1="135"
+                  x2="9"
+                  y2="145"
+                  stroke="#d7b56d"
+                  stroke-width="0.6"
+                  opacity="0.5"
+                />
+                <line
+                  x1="14"
+                  y1="108"
+                  x2="14"
+                  y2="134"
+                  stroke="#d7b56d"
+                  stroke-width="0.6"
+                  opacity="0.3"
+                />
+                <circle cx="10" cy="168" r="1" fill="#d7b56d" opacity="0.35" />
+                <line
+                  x1="14"
+                  y1="146"
+                  x2="10"
+                  y2="168"
+                  stroke="#d7b56d"
+                  stroke-width="0.6"
+                  opacity="0.3"
+                />
+                <circle cx="17" cy="192" r="1" fill="#d7b56d" opacity="0.35" />
+                <line
+                  x1="10"
+                  y1="168"
+                  x2="17"
+                  y2="192"
+                  stroke="#d7b56d"
+                  stroke-width="0.6"
+                  opacity="0.3"
+                />
+                <circle cx="14" cy="215" r="1" fill="#d7b56d" opacity="0.4" />
+                <line
+                  x1="17"
+                  y1="192"
+                  x2="14"
+                  y2="215"
+                  stroke="#d7b56d"
+                  stroke-width="0.6"
+                  opacity="0.3"
+                />
+                <circle cx="14" cy="248" r="1.5" fill="#d7b56d" opacity="0.6" />
+                <line
+                  x1="14"
+                  y1="244"
+                  x2="14"
+                  y2="252"
+                  stroke="#d7b56d"
+                  stroke-width="0.7"
+                  opacity="0.5"
+                />
+                <line
+                  x1="10"
+                  y1="248"
+                  x2="18"
+                  y2="248"
+                  stroke="#d7b56d"
+                  stroke-width="0.7"
+                  opacity="0.5"
+                />
+                <line
+                  x1="14"
+                  y1="215"
+                  x2="14"
+                  y2="244"
+                  stroke="#d7b56d"
+                  stroke-width="0.6"
+                  opacity="0.3"
+                />
+              </svg>
+            </div>
+
+            <!-- Hours -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 14px 8px;
+              "
+            >
+              <span
+                id="cd-hours"
+                style="
+                  font-family: &quot;Cinzel Decorative&quot;, serif;
+                  font-size: clamp(44px, 14vw, 72px);
+                  font-weight: 400;
+                  color: var(--gold-light);
+                  line-height: 1;
+                  text-shadow: 0 0 30px rgba(215, 181, 109, 0.25);
+                "
+                >00</span
+              >
+              <span
+                style="
+                  font-size: 9px;
+                  font-weight: 700;
+                  letter-spacing: 4px;
+                  text-transform: uppercase;
+                  color: rgba(215, 181, 109, 0.55);
+                  margin-top: 6px;
+                "
+                >Hours</span
+              >
+            </div>
+
+            <!-- Min -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 14px 8px;
+              "
+            >
+              <span
+                id="cd-min"
+                style="
+                  font-family: &quot;Cinzel Decorative&quot;, serif;
+                  font-size: clamp(44px, 14vw, 72px);
+                  font-weight: 400;
+                  color: var(--gold-light);
+                  line-height: 1;
+                  text-shadow: 0 0 30px rgba(215, 181, 109, 0.25);
+                "
+                >00</span
+              >
+              <span
+                style="
+                  font-size: 9px;
+                  font-weight: 700;
+                  letter-spacing: 4px;
+                  text-transform: uppercase;
+                  color: rgba(215, 181, 109, 0.55);
+                  margin-top: 6px;
+                "
+                >Min</span
+              >
+            </div>
+
+            <!-- Sec -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 14px 8px;
+              "
+            >
+              <span
+                id="cd-sec"
+                style="
+                  font-family: &quot;Cinzel Decorative&quot;, serif;
+                  font-size: clamp(44px, 14vw, 72px);
+                  font-weight: 400;
+                  color: var(--gold-light);
+                  line-height: 1;
+                  text-shadow: 0 0 30px rgba(215, 181, 109, 0.25);
+                "
+                >00</span
+              >
+              <span
+                style="
+                  font-size: 9px;
+                  font-weight: 700;
+                  letter-spacing: 4px;
+                  text-transform: uppercase;
+                  color: rgba(215, 181, 109, 0.55);
+                  margin-top: 6px;
+                "
+                >Sec</span
+              >
+            </div>
+          </div>
+
+          <div style="margin-top: 36px; text-align: center">
+            <div
+              style="
+                font-family: &quot;Cinzel&quot;, serif;
+                font-size: 11px;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 10px;
+              "
+            >
+              The Celebration
+            </div>
+            <div
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 18px;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.8);
+                line-height: 1.6;
+              "
+            >
+              Minggu, 28 Juni 2026<br />Samarinda, Kalimantan Timur
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- JOURNEY WRAPPER -->
+      <div style="position: relative">
+        <!-- OUR STORY -->
+        <section id="story">
+          <div class="story-header reveal">
+            <div class="sec-label">Our Story</div>
+            <div class="sec-title">Perjalanan Cinta</div>
+          </div>
+
+          <div class="story-track-outer" id="storyOuter">
+            <div class="story-track" id="storyTrack">
+              <div class="story-slide">
+                <div class="story-slide-bg">
+                  <!-- <img src="bg2.svg" alt="" srcset="" /> -->
+                </div>
+                <div class="story-slide-content">
+                  <div class="story-photo-wrap reveal rev-zoom">
+                    <div class="story-photo-inner">
+                      <img
+                        src="https://s13.gifyu.com/images/bIoqz.jpg"
+                        alt=""
+                        srcset=""
+                        style="transform: scale(1) translateY(-12%)"
+                      />
+                    </div>
+                    <div class="photo-corner-tl"></div>
+                    <div class="photo-corner-br"></div>
+                  </div>
+                  <div class="text-corner-br"></div>
+                  <div class="story-ch-label reveal rev-up">Awal Mula</div>
+                  <div class="story-ch-title reveal rev-up d-1">
+                    Keajaiban Kemungkinan<br />Kosmik
+                  </div>
+
+                  <div class="story-divider reveal rev-left d-2">
+                    <div class="story-divider-line"></div>
+                    <div class="story-divider-star">✦</div>
+                  </div>
+
+                  <div class="story-body reveal rev-up d-3">
+                    <p>
+                      Menatap luasnya ruang semesta dan panjangnya bentangan
+                      waktu, kami menyadari betapa kecilnya probabilitas dua
+                      manusia untuk saling menemukan. Namun dari triliunan
+                      kemungkinan itu, kami beruntung bisa berbagi kepingan
+                      zaman yang sama untuk saling merengkuh dan mengasihi.
+                    </p>
+                    <p>
+                      Di balik kemegahan takdir kosmis tersebut, perjalanan kami
+                      bermula dari keluguan masa muda — sebuah foto bersama di
+                      ujung masa sekolah yang kini kami kenang sebagai titik
+                      perkenalan, katalis pembuka ruang perbincangan. Berawal
+                      dari resonansi obrolan yang banal, kami perlahan menemukan
+                      cerminan diri.
+                    </p>
+                    <p>
+                      Memilih untuk terus bersama ternyata menuntut lebih dari
+                      sekadar kecocokan awal; ia menuntut kesadaran. Kami
+                      belajar bahwa ritme pertumbuhan tak selalu sama —
+                      kecocokan dan prinsip kompromi inilah yang kemudian
+                      menjadi fondasi hubungan kami.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="story-slide">
+                <div class="story-slide-bg"></div>
+
+                <div class="text-corner-br"></div>
+
+                <div class="story-slide-content">
+                  <div class="story-photo-wrap reveal rev-zoom">
+                    <div class="story-photo-inner">
+                      <img
+                        src="https://s13.gifyu.com/images/bIoqp.jpg"
+                        alt=""
+                        srcset=""
+                        style="transform: scale(1) translateY(-15%)"
+                      />
+                    </div>
+                    <div class="photo-corner-tl"></div>
+                    <div class="photo-corner-br"></div>
+                  </div>
+                  <div class="text-corner-br"></div>
+
+                  <div class="story-ch-label reveal rev-up">Hubungan</div>
+                  <div class="story-ch-title reveal rev-up d-1">
+                    Dialektika Pijar<br />&amp; Gravitasi
+                  </div>
+
+                  <div class="story-divider reveal rev-left d-2">
+                    <div class="story-divider-line"></div>
+                    <div class="story-divider-star">✦</div>
+                  </div>
+
+                  <div class="story-body reveal rev-up d-3">
+                    <p>
+                      Ikatan kami bisa diibaratkan serupa konstelasi bintang di
+                      langit malam — dua pijar yang berdiri mandiri, terpaut
+                      jarak dan waktu, namun secara sadar menarik garis hubung
+                      untuk membentuk kesatuan makna bersama.
+                    </p>
+                    <p>
+                      Satu dekade sudah kami saling mengorbit; berdiskusi, jatuh
+                      bangun, dan menjadi saksi utuh atas evolusi satu sama lain
+                      — bertumbuh dari masa muda yang naif menjadi dua individu
+                      otonom dengan trayek mimpi yang berbeda, namun tetap setia
+                      pada garis konstelasi yang sama.
+                    </p>
+                    <p>
+                      Ada ribuan ujian yang coba mengintervensi, namun ibarat
+                      hukum alam bahwa "semakin besar massa akan semakin besar
+                      juga daya tariknya" — akumulasi cinta dan pengalaman
+                      selalu membawa kami untuk terus mengorbit dan memilih satu
+                      sama lain. Kami memilih untuk menghadapi dunia yang fana
+                      ini dengan terus menggenggam tangan bersama.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="story-slide">
+                <div class="story-slide-bg"></div>
+
+                <div class="story-slide-content">
+                  <div class="story-photo-wrap reveal rev-zoom">
+                    <div class="story-photo-inner">
+                      <img
+                        src="https://s13.gifyu.com/images/bIoqL.jpg"
+                        alt=""
+                        srcset=""
+                        style="transform: scale(1.2) translateY(-9%)"
+                      />
+                    </div>
+                    <div class="photo-corner-tl"></div>
+                    <div class="photo-corner-br"></div>
+                  </div>
+                  <div class="text-corner-br"></div>
+                  <div class="story-ch-label reveal rev-up">Pernikahan</div>
+                  <div class="story-ch-title reveal rev-up d-1">
+                    Sauh dan Suar<br />di Lautan Kefanaan
+                  </div>
+
+                  <div class="story-divider reveal rev-left d-2">
+                    <div class="story-divider-line"></div>
+                    <div class="story-divider-star">✦</div>
+                  </div>
+
+                  <div class="story-body reveal rev-up d-3">
+                    <p>
+                      Sebuah konstelasi bintang di langit malam tidak tercipta
+                      sekadar untuk dikagumi; selama ribuan tahun, ia menjadi
+                      panduan navigasi bagi para pelaut untuk membelah samudra
+                      yang tak bertepi.
+                    </p>
+                    <p>
+                      Bagi kami, pernikahan adalah keputusan sadar untuk
+                      membumikan ikatan tersebut—menerjemahkan konstelasi kami
+                      ke dalam sebuah pelayaran yang nyata dan sakral. Pada 28
+                      Juni 2026, kami mengikrarkan janji untuk mulai berlayar
+                      mengarungi lautan masa depan.
+                    </p>
+                    <p>
+                      Kami menyadari bahwa lautan realitas di luar sana sering
+                      kali dingin, luas, dan rentan. Karena itulah, sebelum
+                      berlayar lebih jauh, kami sepakat untuk mendirikan sebuah
+                      ruang kompromi yang kokoh diterjang ombak dan badai,
+                      laksana mercusuar. Jika konstelasi kami berfungsi untuk
+                      memandu arah kapal saat mengejar mimpi di tengah lautan
+                      lepas, maka mercusuar ini adalah penanda jalan pulang. Ia
+                      hadir agar sejauh apa pun ombak membawa kami pergi, kami
+                      tidak akan pernah tersesat; kami selalu tahu cara untuk
+                      berlabuh, kembali, dan menemukan diri kami lagi dalam satu
+                      sama lain.
+                    </p>
+                  </div>
+                </div>
+                <div class="text-corner-br"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-nav">
+            <div class="story-arrow" id="storyPrev" onclick="storySlide(-1)">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <polyline points="15,18 9,12 15,6" />
+              </svg>
+            </div>
+            <div class="story-dots">
+              <div class="story-dot active" onclick="storyGo(0)"></div>
+              <div class="story-dot" onclick="storyGo(1)"></div>
+              <div class="story-dot" onclick="storyGo(2)"></div>
+            </div>
+            <div class="story-arrow" id="storyNext" onclick="storySlide(1)">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <polyline points="9,18 15,12 9,6" />
+              </svg>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- GALLERY -->
+      <section id="gallery" class="section" style="padding: 0">
+        <div
+          style="
+            background: url(&quot;https://s13.gifyu.com/images/bIouC.png&quot;)
+              no-repeat center top;
+            background-size: cover;
+            padding: 80px 0 200px;
+            position: relative;
+            overflow: hidden;
+          "
+        >
+          <!-- Seamless transition from Story -->
+          <div
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 200px;
+              background: linear-gradient(
+                to bottom,
+                var(--navy) 0%,
+                transparent 100%
+              );
+              z-index: 2;
+              pointer-events: none;
+            "
+          ></div>
+
+          <div
+            style="
+              text-align: center;
+              padding: 0 24px 60px;
+              position: relative;
+              z-index: 5;
+            "
+          >
+            <div class="sec-label">Gallery</div>
+            <div class="sec-title">Our Constellation<br />of Memories</div>
+            <div class="sec-sub">Jejak bintang, kenangan abadi</div>
+          </div>
+
+          <div
+            style="
+              position: relative;
+              width: 100%;
+              max-width: 380px;
+              margin: 0 auto;
+              padding: 0 20px 40px;
+              z-index: 5;
+            "
+            id="galScene"
+          >
+            <svg
+              id="connSvg"
+              style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                pointer-events: none;
+                overflow: visible;
+              "
+              xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+
+            <div
+              id="hex0"
+              class="reveal rev-left gallery-item-wrap"
+              style="
+                position: relative;
+                display: flex;
+                align-items: center;
+                margin-bottom: 80px;
+              "
+            >
+              <div
+                style="
+                  position: relative;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <div
+                  class="hex-border-ring"
+                  style="width: 168px; height: 168px; top: -2px; left: -2px"
+                ></div>
+                <div class="hex-inner" style="width: 164px; height: 164px">
+                  <img
+                    src="https://s13.gifyu.com/images/bd2Bi.jpg"
+                    alt=""
+                    srcset=""
+                    style="transform: translateY(-11%)"
+                  />
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgba(215,181,109,0.3)"
+                    stroke-width="0.8"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                  <span
+                    style="
+                      font-size: 10px;
+                      letter-spacing: 1px;
+                      color: rgba(215, 181, 109, 0.4);
+                    "
+                    >Foto 1</span
+                  >
+                </div>
+              </div>
+              <div
+                style="flex: 1; padding: 0 18px"
+                class="reveal rev-right d-2"
+              >
+                <div
+                  style="
+                    font-family: &quot;Cinzel&quot;, serif;
+                    font-size: 11px;
+                    letter-spacing: 2px;
+                    color: var(--gold);
+                    margin-bottom: 4px;
+                  "
+                >
+                  2016
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Cormorant Garamond&quot;, serif;
+                    font-size: 14px;
+                    font-style: italic;
+                    color: rgba(255, 255, 255, 0.6);
+                    line-height: 1.5;
+                  "
+                >
+                  Pertemuan pertama,<br />awal dari segalanya
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="hex1"
+              class="reveal rev-right gallery-item-wrap"
+              style="
+                position: relative;
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                margin-bottom: 80px;
+              "
+            >
+              <div
+                style="
+                  position: relative;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <div
+                  class="hex-border-ring"
+                  style="width: 168px; height: 168px; top: -2px; left: -2px"
+                ></div>
+                <div class="hex-inner" style="width: 164px; height: 164px">
+                  <img
+                    src="https://s13.gifyu.com/images/bd2BR.jpg"
+                    alt=""
+                    srcset=""
+                    style="transform: translateY(2%)"
+                  />
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgba(215,181,109,0.3)"
+                    stroke-width="0.8"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                  <span
+                    style="
+                      font-size: 10px;
+                      letter-spacing: 1px;
+                      color: rgba(215, 181, 109, 0.4);
+                    "
+                    >Foto 2</span
+                  >
+                </div>
+              </div>
+              <div
+                style="flex: 1; padding: 0 18px; text-align: right"
+                class="reveal rev-left d-2"
+              >
+                <div
+                  style="
+                    font-family: &quot;Cinzel&quot;, serif;
+                    font-size: 11px;
+                    letter-spacing: 2px;
+                    color: var(--gold);
+                    margin-bottom: 4px;
+                  "
+                >
+                  2020
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Cormorant Garamond&quot;, serif;
+                    font-size: 14px;
+                    font-style: italic;
+                    color: rgba(255, 255, 255, 0.6);
+                    line-height: 1.5;
+                  "
+                >
+                  Satu dekade<br />saling mengorbit
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="hex2"
+              class="reveal rev-left gallery-item-wrap"
+              style="
+                position: relative;
+                display: flex;
+                align-items: center;
+                margin-bottom: 80px;
+              "
+            >
+              <div
+                style="
+                  position: relative;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <div
+                  class="hex-border-ring"
+                  style="width: 168px; height: 168px; top: -2px; left: -2px"
+                ></div>
+                <div class="hex-inner" style="width: 164px; height: 164px">
+                  <img
+                    src="https://s13.gifyu.com/images/bIoqM.jpg"
+                    alt=""
+                    srcset=""
+                    style="transform: scale(2) translateY(-21%)"
+                  />
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgba(215,181,109,0.3)"
+                    stroke-width="0.8"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                  <span
+                    style="
+                      font-size: 10px;
+                      letter-spacing: 1px;
+                      color: rgba(215, 181, 109, 0.4);
+                    "
+                    >Foto 3</span
+                  >
+                </div>
+              </div>
+              <div
+                style="flex: 1; padding: 0 18px"
+                class="reveal rev-right d-2"
+              >
+                <div
+                  style="
+                    font-family: &quot;Cinzel&quot;, serif;
+                    font-size: 11px;
+                    letter-spacing: 2px;
+                    color: var(--gold);
+                    margin-bottom: 4px;
+                  "
+                >
+                  2024
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Cormorant Garamond&quot;, serif;
+                    font-size: 14px;
+                    font-style: italic;
+                    color: rgba(255, 255, 255, 0.6);
+                    line-height: 1.5;
+                  "
+                >
+                  Lamaran,<br />satu janji abadi
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="hex3"
+              class="reveal rev-right gallery-item-wrap"
+              style="
+                position: relative;
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  position: relative;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <div
+                  class="hex-border-ring"
+                  style="width: 168px; height: 168px; top: -2px; left: -2px"
+                ></div>
+                <div class="hex-inner" style="width: 164px; height: 164px">
+                  <img
+                    src="https://s13.gifyu.com/images/bIoqs.jpg"
+                    alt=""
+                    srcset=""
+                    style="transform: scale(1.2) translateY(-11%)"
+                  />
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgba(215,181,109,0.3)"
+                    stroke-width="0.8"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                  <span
+                    style="
+                      font-size: 10px;
+                      letter-spacing: 1px;
+                      color: rgba(215, 181, 109, 0.4);
+                    "
+                    >Foto 4</span
+                  >
+                </div>
+              </div>
+              <div
+                style="flex: 1; padding: 0 18px; text-align: right"
+                class="reveal rev-left d-2"
+              >
+                <div
+                  style="
+                    font-family: &quot;Cinzel&quot;, serif;
+                    font-size: 11px;
+                    letter-spacing: 2px;
+                    color: var(--gold);
+                    margin-bottom: 4px;
+                  "
+                >
+                  2026
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Cormorant Garamond&quot;, serif;
+                    font-size: 14px;
+                    font-style: italic;
+                    color: rgba(255, 255, 255, 0.6);
+                    line-height: 1.5;
+                  "
+                >
+                  Menuju hari<br />yang paling indah
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sea & Lighthouse Transition Elements -->
+          <div
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 500px;
+              pointer-events: none;
+              z-index: 1;
+            "
+          >
+            <!-- 1. Ombak  -->
+            <div class="ombakwrap" style="overflow: hidden">
+              <div
+                style="
+                  display: flex;
+                  width: 200%;
+                  animation: seaMove 120s linear infinite;
+                  opacity: 0.7;
+                  -webkit-mask-image: linear-gradient(
+                    to right,
+                    transparent 0%,
+                    black 8%,
+                    black 92%,
+                    transparent 100%
+                  );
+                  -webkit-mask-size: 50% 100%;
+                  -webkit-mask-repeat: repeat-x;
+                  mask-image: linear-gradient(
+                    to right,
+                    transparent 0%,
+                    black 8%,
+                    black 92%,
+                    transparent 100%
+                  );
+                  mask-size: 50% 100%;
+                  mask-repeat: repeat-x;
+                "
+              >
+                <img
+                  src="https://s13.gifyu.com/images/bI1pl.png"
+                  style="width: 50%; display: block"
+                  alt=""
+                />
+                <img
+                  src="https://s13.gifyu.com/images/bI1pl.png"
+                  style="width: 50%; display: block"
+                  alt=""
+                />
+              </div>
+            </div>
+
+            <!-- 2. Mercusuar -->
+            <div
+              style="
+                position: absolute;
+                bottom: 5rem;
+                left: -0.7rem;
+                width: 65%;
+                z-index: 2;
+              "
+            >
+              <img
+                src="https://s13.gifyu.com/images/bIouG.png"
+                style="width: 100%; opacity: 0.85"
+                alt=""
+              />
+
+              <!-- 4. Cahaya (Di atas mercusuar) -->
+              <div class="lighthouse-beam-wrap" style="z-index: 10">
+                <div class="lighthouse-head">
+                  <div class="beam-rotator">
+                    <div class="beam"></div>
+                  </div>
+                  <div class="beam-rotator-2">
+                    <div class="beam-2"></div>
+                  </div>
+                  <div class="lighthouse-glow"></div>
+                  <div class="lighthouse-ring"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Kapal -->
+            <img
+              src="https://s13.gifyu.com/images/bIouO.png"
+              class="kapal"
+              style="width: 10%"
+              alt=""
+            />
+
+            <div
+              style="
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 150px;
+                background: linear-gradient(to top, var(--navy), transparent);
+                z-index: 5;
+              "
+            ></div>
+          </div>
+        </div>
+      </section>
+      <!-- WEDDING GIFT -->
+      <section id="gift" class="section">
+        <div class="reveal">
+          <div class="sec-label">Wedding Gift</div>
+          <div class="sec-title">Hadiah Pernikahan</div>
+          <div class="sec-sub">Dengan penuh kasih &amp; doa</div>
+        </div>
+
+        <div class="gold-divider reveal">
+          <div class="gl"></div>
+          <div class="gs">✦</div>
+          <div class="gr"></div>
+        </div>
+
+        <p class="gift-intro reveal">
+          Doa &amp; restu kehadiranmu adalah hadiah terindah bagi kami.<br />
+          Namun bagi yang ingin memberikan tanda kasih,<br />
+          kami dengan rendah hati menerimanya melalui:
+        </p>
+
+        <div class="bank-card reveal">
+          <div class="bank-card-header">
+            <div class="bank-logo-box">
+              <span class="bank-logo-text">BCA</span>
+            </div>
+            <div class="bank-name-col">
+              <span class="bank-label">Bank</span>
+              <span class="bank-name-val">Bank Central Asia</span>
+            </div>
+          </div>
+
+          <div class="bank-account-holder">
+            <span class="bank-field-label">Atas Nama</span>
+            <span class="bank-field-value">Risma Dwi Sandra</span>
+          </div>
+
+          <span class="bank-field-label">Nomor Rekening</span>
+          <div class="bank-number-row">
+            <span class="bank-number-display">8615401222</span>
+            <button class="btn-copy" id="btn-copy-acc" onclick="copyRekening()">
+              ✦ Salin
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RSVP -->
+      <section id="rsvp">
+        <div class="gold-divider reveal">
+          <div class="gl"></div>
+          <div class="gs">✦</div>
+          <div class="gr"></div>
+        </div>
+
+        <div class="rsvp-page-title reveal">RSVP &amp; WISHES</div>
+        <div class="rsvp-page-sub reveal">Will you celebrate with us?</div>
+
+        <div class="rsvp-toggle-row reveal">
+          <button
+            class="rsvp-toggle-btn active"
+            id="r-hadir"
+            onclick="setRsvp('hadir')"
+          >
+            YES, I'M COMING!
+          </button>
+          <button
+            class="rsvp-toggle-btn"
+            id="r-tidak"
+            onclick="setRsvp('tidak')"
+          >
+            SORRY, I CAN'T
+          </button>
+        </div>
+
+        <span class="rsvp-section-label reveal">Full Name</span>
+        <div class="rsvp-field reveal">
+          <input type="text" id="rsvp-name" placeholder="E.g., Eleanor Vance" />
+        </div>
+
+        <span class="rsvp-section-label reveal">Your Wishes &amp; Message</span>
+        <div class="rsvp-field reveal">
+          <textarea
+            id="rsvp-ucapan"
+            rows="3"
+            placeholder="Share your blessings or wishes here..."
+          ></textarea>
+        </div>
+
+        <div id="rsvp-success"></div>
+        <button class="btn-rsvp-submit reveal" onclick="submitRsvp()">
+          SUBMIT RSVP
+        </button>
+
+        <div class="guest-comments-section reveal">
+          <div class="guest-comments-title">Guest Comments</div>
+          <div id="comments-feed">
+            <div class="comment-item">
+              <div class="comment-header">
+                <span class="comment-name">Eleanor Vance</span>
+                <span class="comment-time">Oct 12, 10:15 AM</span>
+              </div>
+              <div class="comment-text">
+                Congratulations to the happy couple! So excited to celebrate
+                Alvin &amp; Risma's magical day. Sending all my love!
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-header">
+                <span class="comment-name">Liam &amp; Sarah Jenkins</span>
+                <span class="comment-time">Oct 11, 4:22 PM</span>
+              </div>
+              <div class="comment-text">
+                We are absolutely thrilled for you both! A lifetime of happiness
+                awaits. Can't wait for the festivities!
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-header">
+                <span class="comment-name">Grace O'Connell</span>
+                <span class="comment-time">Oct 10, 8:41 PM</span>
+              </div>
+              <div class="comment-text">
+                A beautiful invitation. We are honoured to be part of your
+                celebration. Have a wonderful wedding day!
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLOSING -->
+      <div class="bg-elegant">
+        <section id="closing">
+          <div class="gold-divider reveal">
+            <div class="gl"></div>
+            <div class="gs">✦</div>
+            <div class="gr"></div>
+          </div>
+
+          <div class="closing-names reveal">Alvin &amp; Risma</div>
+
+          <div class="closing-quote reveal">
+            "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan
+            pasangan-pasangan untukmu dari jenismu sendiri, supaya kamu
+            cenderung dan merasa tenteram kepadanya."
+            <span class="closing-source">— QS. Ar-Rum: 21 —</span>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- BOTTOM NAV OUT MAIN-->
+    <div id="bottom-nav">
+      <div class="nav-item active" onclick="goTo('hero', this)">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        <span>Home</span>
+      </div>
+      <div class="nav-item" onclick="goTo('couple', this)">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+          />
+        </svg>
+        <span>Couple</span>
+      </div>
+      <div class="nav-item" onclick="goTo('events', this)">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        <span>Events</span>
+      </div>
+      <div class="nav-item" onclick="goTo('gallery', this)">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <circle cx="8.5" cy="8.5" r="1.5" />
+          <polyline points="21,15 16,10 5,21" />
+        </svg>
+        <span>Gallery</span>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script>
+      var audio = document.getElementById("audio");
+      var musicBtn = document.getElementById("musicBtn");
+      var toast = document.getElementById("toast");
+      var playing = false;
+      var toastTimer;
+
+      audio.src =
+        "https://dl.dropboxusercontent.com/scl/fi/rc5ikfm7ql9tu1inhycgp/copy_B2480933-F8B6-4E75-A5C4-F05478B76A94-1.mp3?rlkey=82jttkbypdqlrcxr4kuzm2bdb&st=o6akjnxi&dl=1";
+      (function () {
+        const p = new URLSearchParams(window.location.search);
+        const t = p.get("to");
+        if (t)
+          document.getElementById("guestName").textContent =
+            decodeURIComponent(t);
+      })();
+
+      window.addEventListener("load", function () {
+        setTimeout(
+          () => document.getElementById("cover").classList.add("ready"),
+          100,
+        );
+      });
+      function showMusicBtn() {
+        musicBtn.classList.add("visible");
+      }
+
+      function tryPlayMusic() {
+        audio
+          .play()
+          .then(function () {
+            setMusicOn(true);
+          })
+          .catch(function () {});
+      }
+
+      function toggleMusic() {
+        if (playing) {
+          audio.pause();
+          setMusicOn(false);
+        } else {
+          audio.play().catch(function () {});
+          setMusicOn(true);
+        }
+      }
+
+      function setMusicOn(on) {
+        playing = on;
+        musicBtn.textContent = on ? "♫" : "▶";
+        musicBtn.classList.toggle("pulse", on);
+      }
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("show");
+        }, 2200);
+      }
+      document
+        .querySelector(".open-btn")
+        .addEventListener("click", function () {
+          document.getElementById("cover").classList.add("slide-away");
+          document.getElementById("main").classList.add("on");
+          document.getElementById("bottom-nav").classList.add("on");
+          setTimeout(initReveal, 350);
+
+          showMusicBtn();
+          tryPlayMusic();
+          setTimeout(() => {
+            cover.style.display = "none";
+          }, 900);
+        });
+
+      function initReveal() {
+        const main = document.getElementById("main");
+        const els = main.querySelectorAll(".reveal");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) e.target.classList.add("visible");
+            });
+          },
+          { root: main, threshold: 0.12 },
+        );
+        els.forEach((el, i) => {
+          el.style.transitionDelay = (i % 5) * 0.07 + "s";
+          obs.observe(el);
+        });
+        els.forEach((el) => {
+          if (el.getBoundingClientRect().top < window.innerHeight)
+            el.classList.add("visible");
+        });
+      }
+
+      function goTo(id, el) {
+        const main = document.getElementById("main");
+        const sec = document.getElementById(id);
+        if (!sec) return;
+
+        const mainRect = main.getBoundingClientRect();
+        const secRect = sec.getBoundingClientRect();
+        const scrollTarget = main.scrollTop + secRect.top - mainRect.top;
+
+        main.scrollTo({ top: scrollTarget, behavior: "smooth" });
+      }
+
+      document.getElementById("main").addEventListener("scroll", function () {
+        const sections = [
+          "hero",
+          "couple",
+          "events",
+          "countdown",
+          "story",
+          "gallery",
+        ];
+        const navMap = {
+          hero: 0,
+          couple: 1,
+          events: 2,
+          countdown: 2,
+          story: 3,
+          gallery: 3,
+        };
+        let current = "hero";
+
+        const mainRect = this.getBoundingClientRect();
+
+        sections.forEach((id) => {
+          const sec = document.getElementById(id);
+          if (sec) {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top - mainRect.top <= 150) {
+              current = id;
+            }
+          }
+        });
+
+        document.querySelectorAll(".nav-item").forEach((n, i) => {
+          n.classList.toggle("active", i === navMap[current]);
+        });
+      });
+
+      (function () {
+        const track = document.getElementById("storyTrack");
+        const outer = document.getElementById("storyOuter");
+        const dots = document.querySelectorAll(".story-dot");
+        const btnPrev = document.getElementById("storyPrev");
+        const btnNext = document.getElementById("storyNext");
+        const TOTAL = 3;
+        let cur = 0;
+        let startX = 0,
+          isDragging = false;
+
+        function updateArrows() {
+          btnPrev.toggleAttribute("disabled", cur === 0);
+          btnNext.toggleAttribute("disabled", cur === TOTAL - 1);
+        }
+
+        function goTo(n) {
+          cur = Math.max(0, Math.min(TOTAL - 1, n));
+          track.style.transform = `translateX(-${cur * 100}%)`;
+          dots.forEach((d, i) => d.classList.toggle("active", i === cur));
+          updateArrows();
+        }
+
+        window.storySlide = (dir) => goTo(cur + dir);
+        window.storyGo = (n) => goTo(n);
+
+        outer.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+          },
+          { passive: true },
+        );
+        outer.addEventListener(
+          "touchend",
+          (e) => {
+            if (!isDragging) return;
+            const diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 44) goTo(diff > 0 ? cur + 1 : cur - 1);
+            isDragging = false;
+          },
+          { passive: true },
+        );
+
+        outer.addEventListener("mousedown", (e) => {
+          startX = e.clientX;
+          isDragging = true;
+        });
+        outer.addEventListener("mouseup", (e) => {
+          if (!isDragging) return;
+          const diff = startX - e.clientX;
+          if (Math.abs(diff) > 44) goTo(diff > 0 ? cur + 1 : cur - 1);
+          isDragging = false;
+        });
+
+        updateArrows();
+      })();
+
+      (function () {
+        const target = new Date("2026-06-28T00:00:00+08:00").getTime();
+
+        function pad(n) {
+          return String(n).padStart(2, "0");
+        }
+
+        function animateTick(el) {
+          el.classList.add("tick-pop");
+
+          const parent = el.parentElement;
+          if (parent) {
+            parent.style.position = "relative";
+            for (let i = 0; i < 4; i++) {
+              const spark = document.createElement("span");
+              spark.className = "cd-spark";
+              spark.textContent = "✦";
+              const angle = (i / 4) * Math.PI * 2 + Math.random() * 0.5;
+              const dist = 40 + Math.random() * 20;
+              spark.style.setProperty("--tx", Math.cos(angle) * dist + "px");
+              spark.style.setProperty("--ty", Math.sin(angle) * dist + "px");
+              spark.style.animation =
+                "cdSparkFly 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards";
+              parent.appendChild(spark);
+              setTimeout(() => spark.remove(), 800);
+            }
+          }
+
+          setTimeout(() => {
+            el.classList.remove("tick-pop");
+          }, 250);
+        }
+
+        let prev = { d: null, h: null, m: null, s: null };
+
+        function tick() {
+          const diff = Math.max(0, target - Date.now());
+
+          const dEl = document.getElementById("cd-days");
+          const hEl = document.getElementById("cd-hours");
+          const mEl = document.getElementById("cd-min");
+          const sEl = document.getElementById("cd-sec");
+
+          if (!dEl) return;
+
+          const d = Math.floor(diff / 86400000);
+          const h = Math.floor((diff % 86400000) / 3600000);
+          const m = Math.floor((diff % 3600000) / 60000);
+          const s = Math.floor((diff % 60000) / 1000);
+
+          dEl.textContent = pad(d);
+          hEl.textContent = pad(h);
+          mEl.textContent = pad(m);
+          sEl.textContent = pad(s);
+
+          if (prev.d !== null && d !== prev.d) animateTick(dEl);
+          if (prev.h !== null && h !== prev.h) animateTick(hEl);
+          if (prev.m !== null && m !== prev.m) animateTick(mEl);
+          if (prev.s !== null && s !== prev.s) animateTick(sEl);
+
+          prev = { d, h, m, s };
+        }
+
+        tick();
+        setInterval(tick, 1000);
+      })();
+      function drawGalConnectors() {
+        const scene = document.getElementById("galScene");
+        const svg = document.getElementById("connSvg");
+        if (!scene || !svg) return;
+        const sceneRect = scene.getBoundingClientRect();
+        const ids = ["hex0", "hex1", "hex2", "hex3"];
+        const goldFaint = "rgba(215,181,109,0.25)";
+        let paths = "";
+        for (let i = 0; i < ids.length - 1; i++) {
+          const a = document.getElementById(ids[i]);
+          const b = document.getElementById(ids[i + 1]);
+          if (!a || !b) continue;
+          const aW = a.querySelector('[style*="164px"]').parentElement;
+          const bW = b.querySelector('[style*="164px"]').parentElement;
+          const aR = aW.getBoundingClientRect();
+          const bR = bW.getBoundingClientRect();
+          const ax = aR.left - sceneRect.left + aR.width / 2;
+          const ay = aR.top - sceneRect.top + aR.height;
+          const bx = bR.left - sceneRect.left + bR.width / 2;
+          const by = bR.top - sceneRect.top;
+          const dx = bx - ax,
+            dy = by - ay,
+            len = Math.sqrt(dx * dx + dy * dy);
+          const t2 = 30 / len;
+          const bx2 = bx - t2 * dx,
+            by2 = by - t2 * dy;
+          let dots = "";
+          for (let d = 1; d <= 4; d++) {
+            const t = d / 5;
+            const cx = ax + t * dx + (Math.random() - 0.5) * 18;
+            const cy = ay + t * dy + (Math.random() - 0.5) * 14;
+            const r = Math.random() < 0.3 ? 2 : 1;
+            const op = (0.3 + Math.random() * 0.35).toFixed(2);
+            dots += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="#d7b56d" opacity="${op}"/>`;
+          }
+          paths += `<line x1="${ax.toFixed(1)}" y1="${ay.toFixed(1)}" x2="${bx2.toFixed(1)}" y2="${by2.toFixed(1)}" stroke="${goldFaint}" stroke-width="0.8" stroke-dasharray="4 5"/>
+    ${dots}
+    <circle cx="${bx2.toFixed(1)}" cy="${by2.toFixed(1)}" r="3" fill="#d7b56d" opacity="0.75"/>
+    <line x1="${(bx2 - 5).toFixed(1)}" y1="${by2.toFixed(1)}" x2="${(bx2 + 5).toFixed(1)}" y2="${by2.toFixed(1)}" stroke="#d7b56d" stroke-width="0.8" opacity="0.7"/>
+    <line x1="${bx2.toFixed(1)}" y1="${(by2 - 5).toFixed(1)}" x2="${bx2.toFixed(1)}" y2="${(by2 + 5).toFixed(1)}" stroke="#d7b56d" stroke-width="0.8" opacity="0.7"/>`;
+        }
+        const h = sceneRect.height + 10;
+        svg.setAttribute(
+          "viewBox",
+          `0 0 ${sceneRect.width.toFixed(0)} ${h.toFixed(0)}`,
+        );
+        svg.setAttribute("height", h + "px");
+        svg.innerHTML = paths;
+      }
+      setTimeout(drawGalConnectors, 400);
+      window.addEventListener("resize", drawGalConnectors);
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      document.querySelectorAll(".reveal").forEach((el, i) => {
+        el.style.transitionDelay = (i % 5) * 0.07 + "s";
+        observer.observe(el);
+      });
+
+      const SUPABASE_URL = "https://rhozryppicgeidwrgaem.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "sb_publishable_n9mzpRu8X9G5DENzOiKWng_ZYBhgKsA";
+
+      const supabase = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+      );
+
+      let rsvpChoice = "hadir";
+
+      function setRsvp(v) {
+        rsvpChoice = v;
+        document
+          .getElementById("r-hadir")
+          .classList.toggle("active", v === "hadir");
+        document
+          .getElementById("r-tidak")
+          .classList.toggle("active", v === "tidak");
+      }
+
+      function escapeHtml(str) {
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function formatTime(isoString) {
+        const d = new Date(isoString);
+        return d.toLocaleString("en-US", {
+          month: "short",
+          day: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+        });
+      }
+
+      function renderCommentItem(c, prepend = false) {
+        const feed = document.getElementById("comments-feed");
+        const item = document.createElement("div");
+        item.className = "comment-item";
+        if (prepend) item.style.opacity = "0";
+        item.style.transition = "opacity 0.5s";
+
+        const badgeClass =
+          c.attendance === "hadir" ? "badge-hadir" : "badge-tidak";
+        const badgeText = c.attendance === "hadir" ? "Hadir" : "Tidak Hadir";
+
+        item.innerHTML = `
+      <div class="comment-header">
+        <span class="comment-name">${escapeHtml(c.name)}<span class="comment-badge ${badgeClass}">${badgeText}</span></span>
+        <span class="comment-time">${formatTime(c.created_at)}</span>
+      </div>
+      <div class="comment-text">${escapeHtml(c.message)}</div>
+    `;
+
+        if (prepend) {
+          feed.prepend(item);
+          requestAnimationFrame(() => (item.style.opacity = "1"));
+        } else {
+          feed.appendChild(item);
+        }
+      }
+
+      // =========================================================
+      // 1x FETCH saat halaman dibuka — hemat bandwidth:
+      // - hanya kolom yang dibutuhkan (bukan select *)
+      // - limit 20 komentar terbaru saja
+      // - tidak ada polling / realtime subscription
+      // =========================================================
+      async function loadComments() {
+        const loadingEl = document.getElementById("comments-loading");
+        const emptyEl = document.getElementById("comments-empty");
+
+        try {
+          const { data, error } = await supabase
+            .from("rsvp")
+            .select("name, attendance, message, created_at")
+            .order("created_at", { ascending: false })
+            .limit(20);
+
+          loadingEl.style.display = "none";
+
+          if (error) throw error;
+
+          if (!data || data.length === 0) {
+            emptyEl.style.display = "block";
+            return;
+          }
+
+          data.forEach((c) => renderCommentItem(c, false));
+        } catch (err) {
+          loadingEl.textContent = "Gagal memuat ucapan.";
+          console.error(err);
+        }
+      }
+
+      async function submitRsvp() {
+        const nameInput = document.getElementById("rsvp-name");
+        const ucapanInput = document.getElementById("rsvp-ucapan");
+        const successEl = document.getElementById("rsvp-success");
+        const errorEl = document.getElementById("rsvp-error");
+        const btn = document.getElementById("rsvp-submit-btn");
+
+        const name = nameInput.value.trim();
+        if (!name) {
+          nameInput.focus();
+          return;
+        }
+
+        const ucapan = ucapanInput.value.trim();
+        const msg =
+          ucapan ||
+          (rsvpChoice === "hadir"
+            ? "Terima kasih atas undangannya!"
+            : "Maaf tidak bisa hadir, semoga bahagia selalu!");
+
+        errorEl.style.display = "none";
+        btn.disabled = true;
+        btn.textContent = "MENGIRIM...";
+
+        try {
+          // INSERT ke Supabase — hanya kirim kolom yang perlu
+          const { data, error } = await supabase
+            .from("rsvp")
+            .insert([{ name, attendance: rsvpChoice, message: msg }])
+            .select("name, attendance, message, created_at")
+            .single();
+
+          if (error) throw error;
+
+          successEl.style.display = "block";
+          successEl.textContent = "Terima kasih, " + name + "! ✦";
+
+          // Langsung tampilkan komentar sendiri tanpa fetch ulang (hemat request)
+          document.getElementById("comments-empty").style.display = "none";
+          renderCommentItem(data, true);
+
+          nameInput.value = "";
+          ucapanInput.value = "";
+        } catch (err) {
+          errorEl.style.display = "block";
+          console.error(err);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "SUBMIT RSVP";
+        }
+      }
+
+      // Jalankan 1x saat halaman dimuat
+      document.addEventListener("DOMContentLoaded", loadComments);
+
+      function copyRekening() {
+        const noRek = "8615401222";
+        const btn = document.getElementById("btn-copy-acc");
+
+        navigator.clipboard
+          .writeText(noRek)
+          .then(() => {
+            btn.textContent = "✓ Tersalin";
+            btn.classList.add("copied");
+            setTimeout(() => {
+              btn.textContent = "✦ Salin";
+              btn.classList.remove("copied");
+            }, 2200);
+          })
+          .catch(() => {
+            const el = document.createElement("textarea");
+            el.value = noRek;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand("copy");
+            document.body.removeChild(el);
+            btn.textContent = "✓ Tersalin";
+            btn.classList.add("copied");
+            setTimeout(() => {
+              btn.textContent = "✦ Salin";
+              btn.classList.remove("copied");
+            }, 2200);
+          });
+      }
+
+      function createHeroStars(canvasId, sectionId) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d");
+        let stars = [];
+        const NSTARS = 160;
+
+        function resize() {
+          const section = document.getElementById(sectionId);
+          canvas.width = section.offsetWidth;
+          canvas.height = section.offsetHeight;
+        }
+
+        function initStars() {
+          stars = [];
+          for (let i = 0; i < NSTARS; i++) {
+            const isGold = Math.random() < 0.12;
+            stars.push({
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height * 0.75,
+              r: Math.random() * 1.4 + 0.3,
+              a: Math.random(),
+              da:
+                (Math.random() * 0.004 + 0.001) *
+                (Math.random() < 0.5 ? 1 : -1),
+              gold: isGold,
+            });
+          }
+        }
+
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          stars.forEach((s) => {
+            s.a += s.da;
+            if (s.a > 1) s.da = -Math.abs(s.da);
+            if (s.a < 0.1) s.da = Math.abs(s.da);
+
+            ctx.globalAlpha = s.a * 0.9;
+
+            if (s.gold) {
+              ctx.fillStyle = "#d7b56d";
+              ctx.beginPath();
+              const r = s.r * 1.6;
+              for (let p = 0; p < 4; p++) {
+                const a1 = (p / 4) * Math.PI * 2;
+                const a2 = a1 + Math.PI / 4;
+                p === 0
+                  ? ctx.moveTo(s.x + r * Math.cos(a1), s.y + r * Math.sin(a1))
+                  : ctx.lineTo(s.x + r * Math.cos(a1), s.y + r * Math.sin(a1));
+                ctx.lineTo(
+                  s.x + r * 0.35 * Math.cos(a2),
+                  s.y + r * 0.35 * Math.sin(a2),
+                );
+              }
+              ctx.closePath();
+              ctx.fill();
+            } else {
+              ctx.fillStyle = "#dce6ff";
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          });
+
+          requestAnimationFrame(draw);
+        }
+
+        resize();
+        initStars();
+        draw();
+
+        window.addEventListener("resize", () => {
+          resize();
+          initStars();
+        });
+      }
+
+      function createCoupleStars(canvasId, sectionId) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d");
+        let W,
+          H,
+          stars = [],
+          shooters = [];
+
+        function resize() {
+          const sec = document.getElementById(sectionId);
+          W = canvas.width = sec.offsetWidth;
+          H = canvas.height = sec.offsetHeight;
+          buildStars();
+        }
+
+        function buildStars() {
+          stars = [];
+          const count = Math.floor((W * H) / 2200);
+
+          for (let i = 0; i < count; i++) {
+            stars.push({
+              x: Math.random() * W,
+              y: Math.random() * H,
+              r: Math.random() * 1.3 + 0.2,
+              a: Math.random(),
+              speed: Math.random() * 0.008 + 0.003,
+              phase: Math.random() * Math.PI * 2,
+            });
+          }
+        }
+
+        function spawnShooter() {
+          if (shooters.length > 2) return;
+
+          shooters.push({
+            x: Math.random() * W,
+            y: Math.random() * H * 0.4,
+            angle: (-(Math.random() * 20 + 15) * Math.PI) / 180,
+            speed: 6 + Math.random() * 4,
+            life: 0,
+            maxLife: 60,
+            tail: 80,
+          });
+        }
+
+        function draw(t) {
+          ctx.clearRect(0, 0, W, H);
+
+          // stars
+          stars.forEach((s) => {
+            const flicker = 0.5 + 0.5 * Math.sin(t * s.speed + s.phase);
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,240,${s.a * flicker})`;
+            ctx.fill();
+          });
+
+          shooters = shooters.filter((sh) => sh.life < sh.maxLife);
+
+          shooters.forEach((sh) => {
+            sh.life++;
+            const dx = Math.cos(sh.angle) * sh.speed;
+            const dy = Math.sin(sh.angle) * sh.speed;
+
+            sh.x += dx;
+            sh.y += dy;
+
+            ctx.beginPath();
+            ctx.moveTo(sh.x - dx * 10, sh.y - dy * 10);
+            ctx.lineTo(sh.x, sh.y);
+            ctx.strokeStyle = "rgba(255,255,255,0.8)";
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          });
+
+          requestAnimationFrame(draw);
+        }
+
+        resize();
+        buildStars();
+        spawnShooter();
+
+        setInterval(spawnShooter, 3000);
+        requestAnimationFrame(draw);
+
+        window.addEventListener("resize", resize);
+      }
+      // createHeroStars('star-canvas', 'hero');
+      createCoupleStars("couple-canvas", "couple");
+    </script>
+  </body>
+</html>
